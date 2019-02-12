@@ -4,7 +4,7 @@ window.createGraphic = function(graphicSelector) {
 	var graphicProseEl = graphicEl.select('.graphic__prose')
 
 	var margin = 20
-	var size = window.innerWidth*0.4
+	var size = window.innerWidth*0.5
 	var chartSizeW = size - margin * 2
 	var chartSizeH = window.innerHeight
 	var scaleX = null
@@ -93,7 +93,7 @@ window.createGraphic = function(graphicSelector) {
 
 	function setupCharts() {
 		var svg = graphicVisEl.append('svg')
-			.attr('width', window.innerWidth*0.4 + 'px')
+			.attr('width', size + 'px')
 			.attr('height', window.innerHeight + 'px')
 		
 		var chart = svg.append('g')
