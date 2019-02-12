@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <meta property="og:image" content="http://img.sbs.co.kr/newimg/news/20181017/201239258.jpg">
+    <link rel="stylesheet" type="text/css" href="css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="css/template.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/grapic.css">
+    <link rel="stylesheet" href="lib/aos.css" media="screen" />
+    <!-- <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'> -->
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+    <header id="headerbar">
+        <a href="http://news.sbs.co.kr/"><img src="http://img.sbs.co.kr/newimg/news/20180809/201214594.png" alt="" class="sbslogo"></a>
+        <a href="http://news.sbs.co.kr/news/newsPlusList.do?themeId=10000000114"><img src="http://img.sbs.co.kr/newimg/news/20180809/201214596.png" alt="" class="mabulogo"> </a>
+        <img src="http://img.sbs.co.kr/newimg/news/20170406/201037558.png" alt="" class="social" id="twitter">
+        <img src="http://img.sbs.co.kr/newimg/news/20170406/201037559.png" alt="" class="social" id="facebook">
+    </header>
+    <div id="progress">
+		<div id="bar"></div>
+    </div>
+    <main>
+		<div class='intro'>
+			<p class='back-to-blog'><a href='../../#graphscroll'>&larr; Back</a></p>
+			<h1 class='hed'><a href='../../'>국회예산심의</a></h1>
+		</div>
+		<div class='intro'>
+			<p class='back-to-blog'><a href='../../#graphscroll'>&larr; Back</a></p>
+			<h1 class='hed'><a href='../../'>국회예산심의</a></h1>
+		</div>
+		<div class='intro'>
+				<p class='back-to-blog'><a href='../../#graphscroll'>&larr; Back</a></p>
+				<h1 class='hed'><a href='../../'>국회예산심의</a></h1>
+		</div>
+		<ul class='demo-links'>
+			<li>SDFSGDLKJLSDFSGDLKJLSDFSGDLKJLSDFSGDLKJLSDFSGDLKJLSDFSGDLKJLSDFSGDLKJL</li>
+		</ul>
+		
+		<div class='library'>
+			<!-- <h2 class='library__hed'><a target='_blank' href='https://1wheel.github.io/graph-scroll/'>graph-scroll.js</a></h2> -->
+			<div class='library__graphic graphic'>
+				<div class='graphic__prose'>
+					<div class='trigger' data-step='0'><div class="intrigger">tep 2 arrives. The graphic should be locking into a fixed position right about now. We could have a whole bunch of these &ldquo;fixed&rdquo; steps.tep 2 arrives. The graphic should be locking into a fixed position right about now. We could have a whole bunch of these &ldquo;fixed&rdquo; steps.tep 2 arrives. The graphic should be locking into a fixed position right about now. We could have a whole bunch of these &ldquo;fixed&rdquo; steps.tep 2 arrives. The graphic should be locking into a fixed position right about now. We could have a whole bunch of these &ldquo;fixed&rdquo; steps.</div></div>
+					<div class='trigger' data-step='1'><div class="intrigger">tep 2 arrives. The graphic should be locking into a fixed position right about now. We could have a whole bunch of these &ldquo;fixed&rdquo; steps.</div></div>
+					<div class='trigger' data-step='2'><div class="intrigger">tep 2 arrives. The graphic should be locking into a fixed position right about now. We could have a whole bunch of these &ldquo;fixed&rdquo; steps.</div></div>
+				</div>
+				<div class='graphic__vis'></div>
+			</div>
+			<p class='back-to-blog'><a href='../../#graphscroll'>&larr; Back to the blog</a></p>
+		</div>
+
+		
+	</main>
+    <footer id="footerbar">
+        <div class="articlebox">
+            <a href="http://news.sbs.co.kr/news/newsPlusList.do?themeId=10000000114">
+                <p id="fteamname">SBS마부작침</p>
+            </a>
+            <p class="gray credit">도끼를 갈아 바늘을 만든다는 뜻으로 방대한 데이터와 정보 속에서 송곳 같은 팩트를 찾는 저널리즘을 지향합니다. 
+            <br><br>
+            심영구 기자 (so5what@sbs.co.kr)<br>
+            김학휘 기자 (hwi@sbs.co.kr)<br>
+            안혜민 기자·분석가 (hyeminan@sbs.co.kr)<br>
+            김그리나 디자이너·개발자 (greena@sbs.co.kr)<br>
+            인턴: 윤현영
+        </div>
+    </footer>
+    <script src="./js/init.js"></script>
+    <script src="./js/graph-scroll.js"></script>
+    <script src="./js/main.js"></script>
+    <script>
+		(function() {
+
+			function graphscroll() {
+
+				var graphicEl = d3.select('.graphic')
+				var graphicVisEl = graphicEl.select('.graphic__vis')
+				var triggerEls = graphicEl.selectAll('.trigger')
+
+				var viewportHeight = window.innerHeight
+				var halfViewportHeight = viewportHeight/2 //반응위치
+
+                var graphic = createGraphic('.graphic')
+                
+				d3.graphScroll()
+					.container(graphicEl)
+					.graph(graphicVisEl)
+					.sections(triggerEls)
+					.offset(halfViewportHeight)
+					.on('active', function(i) {
+						graphic.update(i)
+					})
+			}
+
+			graphscroll()
+
+		})()
+	</script>
+</body>
+</html>
