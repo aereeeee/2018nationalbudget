@@ -5,6 +5,7 @@ window.createGraphic = function(graphicSelector) {
 
 	var margin = 20
 	var size = window.innerWidth*0.5
+	var sizeheight=window.innerHeight
 	var chartSizeW = size - margin * 2
 	var chartSizeH = window.innerHeight
 	var scaleX = null
@@ -93,9 +94,11 @@ window.createGraphic = function(graphicSelector) {
 
 	function setupCharts() {
 		var svg = graphicVisEl.append('svg')
-			.attr('width', size + 'px')
-			.attr('height', window.innerHeight + 'px')
-		
+			.attr('width', '100%')
+			.attr('height', '100%')
+			.attr("viewBox", "0 0 " + size + " " + sizeheight )
+			.attr("preserveAspectRatio", "xMidYMid meet")
+	
 		var chart = svg.append('g')
 			.classed('chart', true)
 			.attr('transform', 'translate(' + margin + ',' + margin + ')')
