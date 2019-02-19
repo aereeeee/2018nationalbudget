@@ -14,71 +14,50 @@ window.createGraphic = function(graphicSelector) {
 	var extent = d3.extent(data)
 	var minR = 10
 	var maxR = 24
-	
-	// actions to take on each step of our scroll-driven story
+	d3.csv('./budget_final.csv', display);
 	var steps = [
 		function step0() {
-			// circles are centered and small
-			var t = d3.transition()
-				.duration(800)
-				.ease(d3.easeQuadInOut)
-			    
+			// 버블차트 생성 
+			// var t = d3.transition()
+			// 	.duration(800)
+			// 	.ease(d3.easeQuadInOut)
+			storyChart.toggleDisplay('all');
 
-			var item = graphicVisEl.selectAll('.item')
-			
-			item.transition(t)
-				.attr('transform', translate(chartSizeW / 2, chartSizeH / 2))
-
-			item.select('circle')
-				.transition(t)
-				.attr('r', minR)
-
-			item.select('text')
-				.transition(t)
-				.style('opacity', 0)
 		},
 
 		function step1() {
+			//액수에 따라 리스트 
 			var t = d3.transition()
 				.duration(800)
 				.ease(d3.easeQuadInOut)
-			
+				storyChart.toggleDisplay('A');
 			// circles are positioned
-			var item = graphicVisEl.selectAll('.item')
-			
-			item.transition(t)
-				.attr('transform', function(d, i) {
-					return translate(scaleX(i), chartSizeH / 2)
-				})
-
-			item.select('circle')
-				.transition(t)
-				.attr('r', minR)
-
-			item.select('text')
-				.transition(t)
-				.style('opacity', 0)
+	
 		},
 
 		function step2() {
+			//지역성사업 342개
 			var t = d3.transition()
 				.duration(800)
 				.ease(d3.easeQuadInOut)
-
+				storyChart.toggleDisplay('B');
 			// circles are sized
-			var item = graphicVisEl.selectAll('.item')
-			
-			item.select('circle')
-				.transition(t)
-				.delay(function(d, i) { return i * 200 })
-				.attr('r', function(d, i) {
-					return scaleR(d)
-				})
+		
+		},
 
-			item.select('text')
-				.transition(t)
-				.delay(function(d, i) { return i * 200 })
-				.style('opacity', 1)
+		function step3() {
+			//2년연속사업 28개
+			var t = d3.transition()
+				.duration(800)
+				.ease(d3.easeQuadInOut)
+				storyChart.toggleDisplay('C');
+		},
+
+		function step4() {
+			//깜깜이 사업 128개
+			var t = d3.transition()
+				.duration(800)
+				.ease(d3.easeQuadInOut)
 		},
 	]
 
@@ -93,44 +72,18 @@ window.createGraphic = function(graphicSelector) {
 	}
 
 	function setupCharts() {
-		var svg = graphicVisEl.append('svg')
-			.attr('width', '100%')
-			.attr('height', '100%')
-			.attr("viewBox", "0 0 " + size + " " + sizeheight )
-			.attr("preserveAspectRatio", "xMidYMid meet")
+		// var svg = graphicVisEl.append('svg')
+		// 	.attr('width', '100%')
+		// 	.attr('height', '100%')
+		// 	.attr("viewBox", "0 0 " + size + " " + sizeheight )
+		// 	.attr("preserveAspectRatio", "xMidYMid meet")
 	
-		var chart = svg.append('g')
-			.classed('chart', true)
-			.attr('transform', 'translate(' + margin + ',' + margin + ')')
+		// var chart = svg.append('g')
+		// 	.classed('chart', true)
+		// 	.attr('transform', 'translate(' + margin + ',' + margin + ')')
 
-		scaleR = d3.scaleLinear()
-		scaleX = d3.scaleBand()
+		// d3.csv('./budget_final.csv', display );
 
-		var domainX = d3.range(data.length)
-
-		scaleX
-			.domain(domainX)
-			.range([0, chartSizeW])
-			.padding(1)
-
-		scaleR
-			.domain(extent)
-			.range([minR, maxR])
-
-		var item = chart.selectAll('.item')
-			.data(data)
-			.enter().append('g')
-				.classed('item', true)
-				.attr('transform', translate(chartSizeW / 2, chartSizeH / 2))
-		
-		item.append('circle')
-			.attr('cx', 0)
-			.attr('cy', 0)
-
-		item.append('text')
-			.text(function(d) { return d })
-			.attr('y', 1)
-			.style('opacity', 0)
 	}
 
 	function setupProse() {

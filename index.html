@@ -23,28 +23,8 @@
 			text-align: left;
 			word-break: keep-all;
 		}
-		.tooltip {
-			position: absolute;
-			top: 100px;
-			left: 100px;
-		-moz-border-radius:5px;
-			border-radius: 5px;
-		border: 2px solid #000;
-		background: #fff;
-			opacity: .9;
-		color: black;
-			padding: 10px;
-			width: 300px;
-			font-size: 12px;
-			z-index: 10;
-		}
-
-		.tooltip .title {
-			font-size: 13px;
-		}
-
-		.tooltip .name {
-		font-weight:bold;
+		.doc{
+			width:100%;
 		}
 	</style>
 </head>
@@ -60,11 +40,11 @@
     </div>
     <main>
 		<div class='intro'>
-			<p class='back-to-blog'><a href='../../#graphscroll'>&larr; Back</a></p>
+			<p class='back-to-blog'><a href='../../#graphscroll'>&larr; 마부작침</a></p>
 			<h1 class='hed'><a href='../../'>의원님, 예산심사 왜 또 그렇게 하셨어요? </a></h1>
 		</div>
 		<ul class='demo-links'>
-			<li>SDFSGDLKJLSDFSGDLKJLSDFSGDLKJLSDFSGDLKJLSDFSGDLKJLSDFSGDLKJLSDFSGDLKJL</li>
+			<li>- 2019 국회 예산 회의록 전수분석</li>
 		</ul>
 		
 		<div class='library'>
@@ -87,7 +67,7 @@
 						지역성 사업은 특정 지역에 뭔가를 짓거나 조사하는 등 예산을 투입하는 사업인데 지역구 의원의 성과와 밀접하게 연관된 것으로 볼 수 있다. 
 						2019년 ‘국회발 신규사업’ 453개 가운데 지역성 사업은 342건, 75.5%로 파악됐다. 지역성 사업에 편성된 예산은 5,093억 원이다.
 					</div></div>
-					<!-- <div class='trigger' data-step='3'><div class="intrigger">
+					<div class='trigger' data-step='3'><div class="intrigger">
 						<h2>2년 이상 연속 ‘국회발 신규사업’</h2>
 						정부가 2018년 예산안에도, 2019년 예산안에도 편성하지 않았는데 국회가 예산심사를 하면서 2년 연속 추가한 사업들이 있다. 
 						모두 28개 사업이다. ‘서울시 노후하수관로 정비’는 국회가 현행 법령을 어기면서 계속 편성하고 있다. 
@@ -104,25 +84,22 @@
 						회의록을 남기는 건 의원들이 어떤 근거와 논리로 예산 심사를 했는지 국민에게 공개한다는 취지다. 
 						내가 낸 세금을 어디에 쓰겠다는 건지 국민은 알 권리가 있고 국민의 대표인 의원들은 이를 엄정하게 심사할 의무가 있다. 
 						그럼에도 '국회발 신규사업'의 30% 정도는 전혀 편성 근거나 이유를 알 수 없다.
-					</div></div> -->
+					</div></div>
 				</div>
 				<div class='graphic__vis'></div>
 			</div>
 			<p class='back-to-blog'><a href='../../#graphscroll'>&larr; Back to the blog</a></p>
 		</div>
-		<div class="tool-container">
-			<div class="tool-wrap">
-				<ul class="tool-menu">
-					<li class="btn">a</li>
-					<li class="btn">b</li>
-					<li class="btn">c</li>
-					<li class="btn">d</li>
-				</ul>
-				<div class="tool">
-
-				</div>
+		<div class="container">
+			<h1>국회예산심의</h1>
+			<div id="toolbar">
+			  <div id="all" class="button active">All</div>
+			  <div id="A" class="button">“사업성 낮고, 못 쓴다”는 데도 예산 편성</div>
+			  <div id="B" class="button">법적 근거, 원칙을 무시한 예산 편성</div>
+			  <div id="C" class="button">‘뭉텅이 심사’로 예산 편성</div>
 			</div>
-		</div>
+			<div id="vis"></div>
+			<div class="doc">what</div>
 		
 	</main>
     <footer id="footerbar">
@@ -141,8 +118,9 @@
     </footer>
     <script src="./js/init.js"></script>
     <script src="./js/graph-scroll.js"></script>
+	<script src="./js/tooltip.js"></script>
+	<script src="./js/bubble.js"></script>
 	<script src="./js/main.js"></script>
-	<script src="./js/network.js"></script>
     <script>
 		
 		(function() {
