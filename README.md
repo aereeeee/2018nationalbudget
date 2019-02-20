@@ -9,3 +9,9 @@
 - scroll animation, forcing 적용
 - 데이터나오면 적용..
 - ..  
+
+#### 02/20
+- fixtool 반응형
+- scroll graph attr cx error 왜???
+- chart function 정리
+- circlr click function 

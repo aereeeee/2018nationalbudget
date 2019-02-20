@@ -9,8 +9,8 @@ function bubbleChart() {
   var center = { x: width / 2, y: height / 2 };
   
     var centers = {
-      0: { x: width / 1.5, y: height / 2 },
-      1: { x: width / 2.5, y: height / 2 },
+      0: { x: width / 2.5, y: height / 2 },
+      1: { x: width / 1.5, y: height / 2 },
     };
   
     var grouptitleX = {
@@ -76,10 +76,10 @@ function bubbleChart() {
       .enter().append('circle')
         .classed('bubble', true)
         .attr('r', 0)
-        .attr('fill', '#ccc')
+        .attr('fill', '#584392')
         .attr('fill-opacity', 1)
-        .attr('stroke', '#ddd')
-        .attr('stroke-width', 1)
+        // .attr('stroke', '#ddd')
+        // .attr('stroke-width', 1)
         .on('mouseover', showDetail)
         .on('mouseout', hideDetail)
         .on('click', function(d){
@@ -87,7 +87,7 @@ function bubbleChart() {
             .attr('stroke', '#000')
             .attr('r', 8)
     
-            d3.select('.doc').text(d.name);
+            // d3.select('.docp').text(d.name);
         });
   
     //   bubbles = bubbles.merge(bubblesE);
@@ -124,7 +124,7 @@ function bubbleChart() {
       
     //   hideYearTitles();
       d3.selectAll('.bubble')
-      .attr('fill', '#ccc')
+      .attr('fill', '#584392')
       .attr('fill-opacity', 1)
       .transition()
         .duration(2000)
@@ -138,35 +138,35 @@ function bubbleChart() {
   
     function setcolorA(d) {
       d3.selectAll('.bubble')
-      .attr('fill', function(d){
-        if(d.local==1){return '#f00'}
-        else{return '#ddd'}
-      })
+      // .attr('fill', function(d){
+      //   if(d.local==1){return '#584392'}
+      //   else{return '#ddd'}
+      // })
       .attr('fill-opacity', function(d){
         if(d.local==1){return 1}
-        else{return .3}
+        else{return .2}
       })
     }
     function setcolorB(d) {
       d3.selectAll('.bubble')
-      .attr('fill', function(d){
-        if(d.twoyear==1){return '#f00'}
-        else{return '#ddd'}
-      })
+      // .attr('fill', function(d){
+      //   if(d.twoyear==1){return '#584392'}
+      //   else{return '#ddd'}
+      // })
       .attr('fill-opacity', function(d){
         if(d.twoyear==1){return 1}
-        else{return .3}
+        else{return .2}
       })
     }
     function setcolorC(d) {
       d3.selectAll('.bubble')
-      .attr('fill', function(d){
-        if(d.black==1){return '#f00'}
-        else{return '#ddd'}
-      })
+      // .attr('fill', function(d){
+      //   if(d.black==1){return '#584392'}
+      //   else{return '#ddd'}
+      // })
       .attr('fill-opacity', function(d){
         if(d.black==1){return 1}
-        else{return .3}
+        else{return .2}
       })
     }
     function splitBubbles(g) {
@@ -216,7 +216,8 @@ function bubbleChart() {
     function showDetail(d) {
       // change outline to indicate hover state.
       d3.select(this)
-        .attr('stroke', 'black')
+        .attr('stroke', '#ddd')
+        .attr('stroke-width', 2)
         .attr('r', 8)
         
   
@@ -239,8 +240,8 @@ function bubbleChart() {
     function hideDetail(d) {
       // reset outline
       d3.select(this)
-        .attr('stroke', '#ddd')
-        .attr('r', 5)
+        .attr('stroke', 'none')
+        .attr('r', 4)
   
       tooltip.hideTooltip();
     }
