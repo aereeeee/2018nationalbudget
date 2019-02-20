@@ -1,32 +1,31 @@
 
 function bubbleChart() {
-    var margin = 20
-	var size = window.innerWidth*0.5
-	var sizeheight=window.innerHeight
-	var width = size - margin * 2
+  var margin = 20
+	// var size = window.innerWidth*0.5
+	// var sizeheight=window.innerHeight
+	var width = window.innerWidth*0.5 - margin * 2
 	var height = window.innerHeight
-    var tooltip = floatingTooltip('gates_tooltip', 240);
-    var center = { x: width / 2, y: height / 2 };
+  var tooltip = floatingTooltip('tooltip', 240);
+  var center = { x: width / 2, y: height / 2 };
   
     var centers = {
-      0: { x: width / 2.5, y: height / 2 },
-      1: { x: width / 1.5, y: height / 2 }
+      0: { x: width / 1.5, y: height / 2 },
+      1: { x: width / 2.5, y: height / 2 },
     };
   
     var grouptitleX = {
       0: 160,
       1: width / 2
     };
-    
-    var forceStrength = 0.04;
+  
+    var forceStrength = 0.03;
   
     var svg = null;
-    var chart = null;
     var bubbles = null;
     var nodes = [];
   
     function charge(d) {
-      return -Math.pow(d.radius, 2.5) * forceStrength;
+      return -Math.pow(d.radius, 3.1) * forceStrength;
     }
   
     var simulation = d3.forceSimulation()
@@ -43,7 +42,7 @@ function bubbleChart() {
       var myNodes = rawData.map(function (d) {
         return {
           id: d.id,
-          radius: 5,
+          radius: 4,
           budget: +d.budget,
           name: d.name,
           a: d.sangim,
@@ -78,6 +77,7 @@ function bubbleChart() {
         .classed('bubble', true)
         .attr('r', 0)
         .attr('fill', '#ccc')
+        .attr('fill-opacity', 1)
         .attr('stroke', '#ddd')
         .attr('stroke-width', 1)
         .on('mouseover', showDetail)
@@ -92,9 +92,9 @@ function bubbleChart() {
   
     //   bubbles = bubbles.merge(bubblesE);
   
-      bubbles.transition()
-        .duration(2000)
-        .attr('r', 5);
+      // bubbles.transition()
+      //   .duration(2000)
+      //   .attr('r', 4);
   
       simulation.nodes(nodes);
       groupBubbles();
@@ -121,9 +121,14 @@ function bubbleChart() {
   
   
     function groupBubbles() {
+      
     //   hideYearTitles();
       d3.selectAll('.bubble')
-      .attr('fill', '#ccc');
+      .attr('fill', '#ccc')
+      .attr('fill-opacity', 1)
+      .transition()
+        .duration(2000)
+        .attr('r', 4);
       // @v4 Reset the 'x' force to draw the bubbles to the center.
       simulation.force('x', d3.forceX().strength(forceStrength).x(center.x));
   
@@ -137,6 +142,10 @@ function bubbleChart() {
         if(d.local==1){return '#f00'}
         else{return '#ddd'}
       })
+      .attr('fill-opacity', function(d){
+        if(d.local==1){return 1}
+        else{return .3}
+      })
     }
     function setcolorB(d) {
       d3.selectAll('.bubble')
@@ -144,12 +153,20 @@ function bubbleChart() {
         if(d.twoyear==1){return '#f00'}
         else{return '#ddd'}
       })
+      .attr('fill-opacity', function(d){
+        if(d.twoyear==1){return 1}
+        else{return .3}
+      })
     }
     function setcolorC(d) {
       d3.selectAll('.bubble')
       .attr('fill', function(d){
         if(d.black==1){return '#f00'}
         else{return '#ddd'}
+      })
+      .attr('fill-opacity', function(d){
+        if(d.black==1){return 1}
+        else{return .3}
       })
     }
     function splitBubbles(g) {
@@ -287,7 +304,7 @@ function bubbleChart() {
         var buttonId = button.attr('id');
   
         // 토글에 클래스 넘기기
-        myBubbleChart.toggleDisplay(buttonId);
+        // myBubbleChart.toggleDisplay(buttonId);
       });
   }
   

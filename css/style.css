@@ -1,7 +1,3 @@
-*,html,body{
-  margin:0;
-  padding:0;
-}
 main {
     padding-bottom: 5rem;
   }
@@ -24,244 +20,137 @@ main {
   ul {
     list-style-type: none;
   }
-  
-  header {
-    z-index: 1000;
-    margin: 1rem auto;
-    max-width: 12rem;
-    padding: 1rem;
-  }
-  header a.logo {
-    display: block;
-    border: none;
-  }
-  header a.logo svg {
-    fill: #2a2a2a;
-    display: block;
-    width: 100%;
-  }
-  
+
   .intro {
     max-width: 60rem;
     margin: 4rem auto 2rem auto;
+    text-align:center;
+    font-size:17.5px;
   }
-  
-  .intro p {
-    max-width: 40rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .hed {
-    font-family: "Mercury SSm A", "Mercury SSm B", Georgia, serif;
+  .title {
+    /* font-family: "Mercury SSm A", "Mercury SSm B", Georgia, serif; */
     font-size: 2rem;
     font-weight: bold;
     line-height: 1.4;
-    margin-bottom: 3rem;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 40rem;
     text-align: center;
   }
   
-  .hed a {
+  .title a {
     border: none;
   }
-  
-  .byline {
-    color: #777;
-    height: 100%;
-    overflow: hidden;
-  }
-  
-  .byline__author {
-    float: left;
-    /*display: block;*/
-  }
-  
-  .byline__date {
-    float: right;
-  }
-  
-  .disclaimer {
-    clear: both;
-    font-size: 0.9rem;
-  }
-  
-  .update {
-    /* background-color: #eee; */
-    font-size: 0.9rem;
-    padding: 1rem;
-  }
-  
-  .video-example {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-align-items: flex-start;
-    -ms-flex-align: flex-start;
-    align-items: flex-start;
-  }
-  
-  .video-example {
-    background-color: #1a1a1a;
-    margin: 3rem auto;
-  }
-  
-  .example-link {
-    display: block;
-    width: 49.25%;
-    margin: 0.25%;
-    border: none;
-  }
-  
-  .example-link:nth-child(1) {
-    margin-left: 0.5%;
-    margin-top: 0.5%;
-  }
-  
-  .example-link:nth-child(2) {
-    margin-right: 0.5%;
-    margin-top: 0.5%;
-  }
-  
-  .example-link:nth-child(3) {
-    margin-left: 0.5%;
-    margin-bottom: 0.5%;
-  }
-  
-  .example-link:nth-child(4) {
-    margin-right: 0.5%;
-    margin-bottom: 0.5%;
-  }
-  
-  .video-demo {
-    display: block;
-    max-width: 40rem;
-    margin: 0 auto;
-    border: 1px solid #eee;
-  }
-  
-  .outro {
-    max-width: 40rem;
-    margin: 0 auto;
-    margin-bottom: 5rem;
-  }
-  
-  /* 전체 컨테이너  */
-  .library {
-    padding: 1rem 0;
-    margin: 2rem auto;
-    max-width: 100%;
-  }
-  
-  /* .library__text {
-    margin: 0 auto;
-    max-width: 40rem;
-  }
-   */
-  .library__hed {
-    font-size: 1.25rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-  
-  .library__review {
-  }
-  
-  .library__demo {
-    text-transform: uppercase;
-  }
-  
-  .library__code {
-    font-size: 0.85rem;
-    height: 20vh;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .library__code.is-expand {
-    height: auto;
-  }
-  
-  .library__code:after {
-    content: "";
-    display: block;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 3rem;
-    background-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0),
-      rgba(39, 40, 34, 1) 80%
-    );
-  }
-  
-  .code__button {
-    display: block;
-    width: 100%;
-    background: #1a1a1a;
-    color: #efefef;
-    border-top: 1px solid #666;
-    padding: 0.5rem;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-  }
-  
-  .code__button:hover {
-    background-color: #f33;
-  }
-  
-  .back-to-blog {
-    text-align: center;
-  }
-  
-  .demo-links {
-    height: 100%;
-    overflow: hidden;
-    max-width: 40rem;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .demo-links li {
-    float: left;
-    margin-right: 1rem;
-  }
-  #toolbar {
-    margin-top: 10px;
-  }
-  
-  .year {
-    font-size: 21px;
-    fill: #aaa;
-    cursor: default;
-  }
-  
 
-  /* 고정형 인터랙브 */
 
-  a, a:visited, a:active {
-    color: #444;
+  .plog{
+
   }
+
+/* 스크롤 인터랙티브 */
+.library {
+  padding: 1rem 0;
+  margin: 2rem auto;
+  max-width: 100%;
+}
+.graphic {
+width: 100%;
+position: relative;
+}
+/* 텍스트파트 일단 50/50 패딩으로 마진처리 */
+.graphic__prose {
+width:40vw;
+padding-left:10vw;
+padding-right:20px;
+}
+
+.graphic__prose .trigger {
+padding: 0;
+margin: 0;
+min-height: 100vh;
+max-height: 100vh;
+
+}
+
+/* 그래프파트 (돔의 넓이 적용이 안됨 차트에..그래서 윈도우 넓이 적용해야만함.. 그래서 50/50)
+높이 걍 100 */
+.graphic__vis {
+position: absolute;
+top: 0;
+margin-left: 40vw;
+-webkit-transform: translate3d(0, 0, 0);
+-moz-transform: translate3d(0, 0, 0);
+transform: translate3d(0, 0, 0);
+width:50%;
+height: 100vh;
+}
+
+.graphic__vis.is-fixed {
+position: fixed;
+}
+
+.graphic__vis.is-bottom {
+top: auto;
+bottom: 0;
+}
+
+/* 차트svg를 버티컬 센터로 맞추면 처음 시작할때 텍스트와 같이 시작할수가 없.. */
+.graphic__vis svg {
+/* border: 1px dashed black; */
+/* top: 50%; */
+position: relative;
+/* -webkit-transform: translateY(-50%);
+-moz-transform: translateY(-50%);
+transform: translateY(-50%); */
+
+}
+
+
+
+/* graph-scroll.js version */
+.graphic__vis.graph-scroll-fixed {
+position: fixed;
+right: auto;
+}
+
+.graphic__vis.graph-scroll-below {
+top: auto;
+bottom: 0;
+}
+
+.trigger{
+position:relative;
+opacity: .3;
+transition: all 1s;
+} 
+
+.trigger.graph-scroll-active{
+opacity: 1;
+transition: all 1s;
+}
+
+/* 트리거 안에 박스하나 더 만들어서 트리거는 svg랑 같이 높이 100, 박스를 중간배치 */
+.intrigger{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+}
+
+
+  
+/* 고정형 인터랙브 */
   
   .container {
     max-width: 900px;
     margin: auto;
   }
-  
+  #toolbar{
+    width:100%;
+    margin:0 auto;
+  }
   .button {
-    min-width: 130px;
-    padding: 4px 5px;
+    width:25%;
+    height:40px;
+    line-height:40px;
+    float:left;
+    box-sizing: border-box;
     cursor: pointer;
     text-align: center;
     font-size: 13px;
@@ -276,7 +165,7 @@ main {
   
   
   #vis {
-    width: 940px;
+    width: 100%;
     height: 600px;
     clear: both;
     margin-bottom: 10px;
@@ -284,12 +173,6 @@ main {
   
   #toolbar {
     margin-top: 10px;
-  }
-  
-  .year {
-    font-size: 21px;
-    fill: #aaa;
-    cursor: default;
   }
   
   .tooltip {

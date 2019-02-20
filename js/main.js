@@ -8,12 +8,6 @@ window.createGraphic = function(graphicSelector) {
 	var sizeheight=window.innerHeight
 	var chartSizeW = size - margin * 2
 	var chartSizeH = window.innerHeight
-	var scaleX = null
-	var scaleR = null
-	var data = [8, 6, 7, 5, 3, 0, 9]
-	var extent = d3.extent(data)
-	var minR = 10
-	var maxR = 24
 	d3.csv('./budget_final.csv', display);
 	var steps = [
 		function step0() {
