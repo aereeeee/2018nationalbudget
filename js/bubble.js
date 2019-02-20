@@ -69,6 +69,8 @@ function bubbleChart() {
         .attr('transform', 'translate(' + 20 + ',' + 20 + ')')
         .attr("viewBox", "0 0 " + window.innerWidth*0.5 + " " + window.innerHeight )
         .attr("preserveAspectRatio", "xMidYMid meet")
+      
+      svg.append('g').attr('class','total').a
   
       bubbles = svg.selectAll('.bubble')
         .data(nodes, function (d) { return d.id; })

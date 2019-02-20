@@ -1,21 +1,22 @@
-var width = window.innerWidth*0.8,
-    height = 500;
+var widthf = window.innerWidth*0.8,
+    heightf = 600;
 
 var grid = d3.grid()
     .points()
-    .size([width*0.5-40, height-40]);
-var tooltip = floatingTooltip('tooltip-fix', 240);
+    .size([widthf*0.5-40, heightf-40]);
+
+var tooltipfix = floatingTooltip('tooltip-fix', 240);
 d3.csv('../budget_final.csv', function(error,data){
     if (error) throw error;
 
     var sortBy = {
     A: d3.comparator()
         .order(d3.descending, function(d) { return d.A; })
-        .order(d3.descending, function(d) { return d.budget; }),
+        .order(d3.ascending, function(d) { return d.budget; }),
     B: d3.comparator()
         .order(d3.descending, function(d) { return d.B; })
         .order(d3.descending, function(d) { return d.budget; }),
-        // .order(d3.ascending, function(d) { return d.A; }),
+    
     C: d3.comparator()
         .order(d3.descending, function(d) { return d.C; })
         .order(d3.descending, function(d) { return d.budget; }),
@@ -23,8 +24,10 @@ d3.csv('../budget_final.csv', function(error,data){
     };
 
     var svg = d3.select("#vis").append("svg")
-    .attr('width', width*0.5)
-        .attr('height' , height)
+        .attr('width','100%')
+        .attr('height' , '100%')
+        .attr("viewBox", "0 0 " + widthf*0.5 + " " + heightf )
+        .attr("preserveAspectRatio", "xMidYMid meet")
         .append("g")
     .attr("transform", "translate(20,20)");
 
@@ -86,9 +89,7 @@ d3.csv('../budget_final.csv', function(error,data){
         d3.select(this)
           .attr('stroke', '#ddd')
           .attr('stroke-width', 2)
-          .attr('r', 8)
-          
-    
+          .attr('r', 8)  
         var content = '<span class="name">사업명: </span><span class="value">' +
                       d.name +
                       '</span><br/>' +
@@ -99,7 +100,7 @@ d3.csv('../budget_final.csv', function(error,data){
                       d.sangim +
                       '</span>';
     
-        tooltip.showTooltip(content, d3.event);
+        tooltipfix.showTooltip(content, d3.event);
       }
     function hideDetail(d) {
         // reset outline
@@ -107,6 +108,6 @@ d3.csv('../budget_final.csv', function(error,data){
           .attr('stroke', 'none')
           .attr('r', 6)
     
-        tooltip.hideTooltip();
+        tooltipfix.hideTooltip();
       }
 });

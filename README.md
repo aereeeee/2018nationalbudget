@@ -3,15 +3,21 @@
 - 02/11 기획회의
 - 02/12 scrollytelling
   
-#### schedule
-- explore tool제작
-- **페이지 디자인**
-- scroll animation, forcing 적용
-- 데이터나오면 적용..
-- ..  
-
 #### 02/20
-- fixtool 반응형
+- ~~디자인팀 미팅~~
+- ~~fixtool 반응형~~
 - scroll graph attr cx error 왜???
 - chart function 정리
 - circlr click function 
+- comparator.order :  number 가 자릿수대로 정렬  
+- sbs logo png 없음
+
+
+### 스크롤 파트    
+- 액수 axis....
+- 스크롤 범례
+- step0에서 pop하도록
+
+### 고정형 파트
+- 회의록
+- 
