@@ -6,14 +6,14 @@ function bubbleChart() {
     var radius=4;
   }else{
     var width = window.innerWidth;
-    var radius=3;
+    var radius=3.5;
   }
 	var height = window.innerHeight
   var tooltip = floatingTooltip('tooltip', 240);
   var center = { x: width / 2, y: height / 2 };
   var formatComma = d3.format(",");
   var budgetaxis=['1,000만 원 -~ 1억 원','1억 원 -~ 10억 원', 
-                  '10억 원 -~ 100억 원', '100억 원 -~ 1,000억 원', '1,000억 원 ~'];
+                  '10억 원 -~ 100억 원', '100억 원 -~ 1,000억 원', '1,000억 원 -~'];
   var centers = {
     0: { x: width / 2.5, y: height / 2 },
     1: { x: width / 1.5, y: height / 2 },
