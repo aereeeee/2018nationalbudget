@@ -1,4 +1,9 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+::-webkit-scrollbar {
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
+}
+
 body, h1, h2, h3, h4, h5, p, div , li{
   font-family: 'Noto Sans KR', sans-serif;
 }
@@ -138,8 +143,13 @@ position:absolute;
 top:50%;
 transform:translateY(-50%);
 }
-
- 
+.total{
+  font-weight:600;
+  font-size:14px;
+}
+.percent{
+  font-weight:600;
+}
 /* 고정형 인터랙브 */
   
   .container {
@@ -150,25 +160,32 @@ transform:translateY(-50%);
   #toolbar{
     float:left;
     width:100%;
-    padding-right:20px;
     box-sizing: border-box;
+    margin:50px 0;
   }
   #toolbar::after { 
     content: '';
     clear: both;
    }
   .button {
-    width:33%;
+    width:30%;
+    margin-left:3%;
     float:left;
     box-sizing: border-box;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     font-weight:bold;
+    border-radius:100px;
+    border:2px solid #584392;
+    padding:5px 20px;
   }
-  
+  .button:hover{
+    background: #584392;
+    color: #fff;
+  }
   .button.active {
-    background: #000;
+    background: #584392;
     color: #fff;
   }
   
@@ -176,9 +193,9 @@ transform:translateY(-50%);
     clear:both;
     width:100%;
     color:#999;
-    padding:50px;
-    text-align: center;
+    padding:20px;
     font-size:14px;
+    margin-bottom:30px;
   }
 
   #vis {
@@ -192,11 +209,24 @@ transform:translateY(-50%);
   .doc{
     float:left;
     box-sizing: border-box;
-    width:50%;
+    width:45%;
+    padding-left:5%;
+    border-left:1px solid #ddd;
+    height:600px;
     padding:20px 30px;
+    /* border:1px solid #000; */
+    overflow:scroll;
+    line-height:170%;
+    /* -webkit-box-shadow: -9px 10px 54px -15px rgba(0,0,0,0.38);
+    -moz-box-shadow: -9px 10px 54px -15px rgba(0,0,0,0.38);
+    box-shadow: -9px 10px 54px -15px rgba(0,0,0,0.38); */
   }
-
-
+  .doc span{
+    font-weight:bold;
+  }
+  .doc-name, .doc-budget{
+    color:#584392;
+  }
   #toolbar {
     margin-top: 10px;
   }
@@ -231,4 +261,156 @@ transform:translateY(-50%);
   .footer {
     text-align: center;
   }
-  
+  .x-axis text{
+    fill: #999;
+  }
+  .x-axis path{
+    stroke: #999;
+    stroke-width:.5;
+  }
+  .x-axis line{
+    stroke: #999;
+    /* display:none; */
+  }      
+
+   /* 미디어쿼리 1024 */
+   @media screen and (max-width: 1024px) {
+    .img-graphic{
+      width:100%;
+      max-width:100%;
+      padding:0 20px;
+      text-align:center;
+      margin-top:7rem;
+    }
+    /* 스크롤 인터랙티브 */
+      .library {
+        margin: 0 auto;
+        width:100%;
+      }
+      .graphic {
+      width: 100%;
+      position: relative;
+      }
+      /* 텍스트파트 일단 50/50 패딩으로 마진처리 */
+      .graphic__prose {
+      width:100vw;
+      padding-left:20px;
+      padding-right:20px;
+      }
+
+      .graphic__prose .trigger {
+      padding: 0;
+      margin: 0;
+      min-height: 100vh;
+      max-height: 100vh;
+      background:rgba(255,255,255,.9);
+        z-index:999;
+      }
+
+      /* 그래프파트 (돔의 넓이 적용이 안됨 차트에..그래서 윈도우 넓이 적용해야만함.. 그래서 50/50)
+      높이 걍 100 */
+      .graphic__vis {
+      position: absolute;
+      top: 0;
+      margin-left: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      width:100%;
+      height: 100vh;
+      pointer-events: none;
+      }
+
+      .trigger{
+      position:relative;
+      opacity: .3;
+      transition: all .2s;
+      } 
+
+      .trigger.graph-scroll-active{
+      opacity: 1;
+      transition: all 1s;
+      }
+
+      /* 트리거 안에 박스하나 더 만들어서 트리거는 svg랑 같이 높이 100, 박스를 중간배치 */
+      .total{
+        font-weight:600;
+        font-size:14px;
+        display:none;
+      }
+      .percent{
+        font-weight:600;
+        display:none;
+      }
+      /* 고정형 인터랙브 */
+        
+        .container {
+          width:100%;
+          padding:0 20px;
+          margin: 4rem auto;
+          position: relative;
+        }
+        #toolbar{
+          float:none;
+          width:100%;
+          box-sizing: border-box;
+          margin:0 0 50px 0;
+        }
+        .button {
+          width:100%;
+          margin-left:0;
+          margin-bottom:20px;
+          float:none;
+          box-sizing: border-box;
+          cursor: pointer;
+          text-align: center;
+          text-decoration: none;
+          font-weight:bold;
+          border-radius:100px;
+          border:2px solid #584392;
+          padding:5px 20px;
+        }
+        .button:hover{
+          background: #584392;
+          color: #fff;
+        }
+        .button.active {
+          background: #584392;
+          color: #fff;
+        }
+        
+        .disc{
+          clear:both;
+          width:100%;
+          color:#999;
+          padding:20px;
+          font-size:14px;
+          margin-bottom:30px;
+        }
+
+        #vis {
+          box-sizing: border-box;
+          width:100%;
+          height:600px;
+          float:left;
+          margin-bottom:4rem;
+        }
+        
+        .doc{
+          float:none;
+          box-sizing: border-box;
+          width:100%;
+          padding-left:5%;
+          border-left:none;
+          border-top:1px solid #ddd;
+          height:auto;
+          padding:20px 30px;
+          /* border:1px solid #000; */
+          overflow:initial;
+          line-height:170%;
+          /* -webkit-box-shadow: -9px 10px 54px -15px rgba(0,0,0,0.38);
+          -moz-box-shadow: -9px 10px 54px -15px rgba(0,0,0,0.38);
+          box-shadow: -9px 10px 54px -15px rgba(0,0,0,0.38); */
+        }
+    
+   }

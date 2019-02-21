@@ -99,23 +99,28 @@
 		<div class="container">
 			<h1>마부작침 분석 문제 예산</h1>
 			<hr>
+			<div class="disc">[마부작침]은 '국회발 신규사업' 453개를 대상으로 국회 예산심사 과정에서 문제가 있어 보이는 사업들을 따로 분류했다. 
+				<br>그 결과 사업성이 낮고 불용 처리될 가능성이 큰데도 편성된 사업은 11개(131억 원), 현행 법령을 어기는 등 정부의 예산 편성 원칙에 맞지 않는 사업은 37개 사업(1,002억 원), 
+				논의도 고민도 없이 '뭉텅이'로 처리된 사업은 114개(1,046억 원)로 분석됐다.
+			</div>
 			<div id="toolbar">
 					<!-- <div id="all" class="button active">All</div> -->
-					<div id="A" class="button" data-sort="A">사업성 낮고 못 쓴다는데도 편성</div>
-					<div id="B" class="button" data-sort="B">법적 근거, 원칙을 무시한 편성</div>
-					<div id="C" class="button" data-sort="C">‘뭉텅이’ 처리 예산</div>
+					<div id="A" class="button" data-sort="A"><span>사업성 낮고 못 쓴다는데도 편성</span></div>
+					<div id="B" class="button" data-sort="B"><span>법적 근거, 원칙을 무시한 편성</span></div>
+					<div id="C" class="button" data-sort="C"><span>‘뭉텅이’ 처리 예산</span></div>
 			  <!-- <div id="all" class="button active">All</div>
 			  <div id="A" class="button" data-sort="A">“사업성 낮고, 못 쓴다”는 데도 예산 편성<p>정부가 불용 가능성이 높다고 하거나, 사업성이 떨어져서 예산을 배정해도 진행하기 어렵다고 한 사업</p></div>
 			  <div id="B" class="button" data-sort="B">법적 근거, 원칙을 무시한 예산 편성<p>법과 시행령을 위반하거나, 정부 예산 편성의 기본 원칙들을 무시한 신규사업</p></div>
 			  <div id="C" class="button" data-sort="C">‘뭉텅이 심사’로 예산 편성<p>한꺼번에 심사한 '뭉텅이' 신규사업</p></div> -->
 			</div>
-			<div class="disc">[마부작침]은 '국회발 신규사업' 453개를 대상으로 국회 예산심사 과정에서 문제가 있어 보이는 사업들을 따로 분류했다. 
-				<br>그 결과 사업성이 낮고 불용 처리될 가능성이 큰데도 편성된 사업은 11개(131억 원), 현행 법령을 어기는 등 정부의 예산 편성 원칙에 맞지 않는 사업은 37개 사업(1,002억 원), 
-				<br>논의도 고민도 없이 '뭉텅이'로 처리된 사업은 114개(1,046억 원)로 분석됐다.</div>
+			
 			<div id="vis"></div>
-			<div class="doc"><h3>회의록</h3><div class="docp">qq</div></div>
+			<div class="doc">
+				<h3 class="doc-name">사업명</h3>
+				<h3 class="doc-budget">예산</h3>
+				<div class="docp"></div></div>
 		</div>
-		<div class="tail">데이터 출처 : 어디어디어디</div>
+		<div class="tail"></div>
 		
 	</main>
     <footer id="footerbar">
@@ -151,7 +156,7 @@
 				var triggerEls = graphicEl.selectAll('.trigger')
 
 				var viewportHeight = window.innerHeight
-				var halfViewportHeight = viewportHeight/2 //반응위치
+				var halfViewportHeight = viewportHeight*0.2 //반응위치
 
                 var graphic = createGraphic('.graphic')
                 

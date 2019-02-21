@@ -24,7 +24,7 @@ window.createGraphic = function(graphicSelector) {
 			var t = d3.transition()
 				.duration(800)
 				.ease(d3.easeQuadInOut)
-				storyChart.toggleDisplay('A');
+				storyChart.toggleDisplay('axis');
 			// circles are positioned
 	
 		},
@@ -34,7 +34,7 @@ window.createGraphic = function(graphicSelector) {
 			var t = d3.transition()
 				.duration(800)
 				.ease(d3.easeQuadInOut)
-				storyChart.toggleDisplay('B');
+				storyChart.toggleDisplay('A');
 			// circles are sized
 		
 		},
@@ -44,7 +44,7 @@ window.createGraphic = function(graphicSelector) {
 			var t = d3.transition()
 				.duration(800)
 				.ease(d3.easeQuadInOut)
-				storyChart.toggleDisplay('C');
+				storyChart.toggleDisplay('B');
 		},
 
 		function step4() {
@@ -52,6 +52,9 @@ window.createGraphic = function(graphicSelector) {
 			var t = d3.transition()
 				.duration(800)
 				.ease(d3.easeQuadInOut)
+				storyChart.toggleDisplay('C');
+		},
+		function step5() {
 		},
 	]
 

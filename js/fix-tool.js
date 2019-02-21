@@ -1,14 +1,22 @@
-var widthf = window.innerWidth*0.8,
+var widthf = window.innerWidth*0.7,
     heightf = 600;
-
-var grid = d3.grid()
+var formatComma = d3.format(",");
+if(window.innerWidth>1024){
+    var grid = d3.grid()
     .points()
     .size([widthf*0.5-40, heightf-40]);
+}else{
+    var grid = d3.grid()
+    .points()
+    .size([window.innerWidth-80, heightf-40]);
+}
+// var grid = d3.grid()
+//     .points()
+//     .size([widthf*0.5-40, heightf-40]);
 
 var tooltipfix = floatingTooltip('tooltip-fix', 240);
 d3.csv('../budget_final.csv', function(error,data){
     if (error) throw error;
-
     var sortBy = {
     A: d3.comparator()
         .order(d3.descending, function(d) { return d.A; })
@@ -26,13 +34,24 @@ d3.csv('../budget_final.csv', function(error,data){
     var svg = d3.select("#vis").append("svg")
         .attr('width','100%')
         .attr('height' , '100%')
-        .attr("viewBox", "0 0 " + widthf*0.5 + " " + heightf )
+        .attr("viewBox",function(){
+            if(window.innerWidth>1024){
+               return  "0 0 " + widthf*0.5 + " " + heightf;
+            }else{
+                return "0 0 " + window.innerWidth-80 + " " + heightf
+            }
+        })
         .attr("preserveAspectRatio", "xMidYMid meet")
         .append("g")
-    .attr("transform", "translate(20,20)");
+        .attr("transform", "translate(20,20)");
+
+    update();
 
     d3.selectAll(".button")
     .on("click", function(d) {
+        d3.selectAll('.button').classed('active', false);
+        d3.select(this).classed('active', true);
+
         d3.event.preventDefault();
         data.sort(sortBy[this.dataset.sort]);
         if(this.dataset.sort=='A'){
@@ -54,48 +73,51 @@ d3.csv('../budget_final.csv', function(error,data){
         update();
     });
 
-    update();
-
     function update() {
     var node = svg.selectAll(".node")
         .data(grid(data), function(d) { return d.id; });
     node.enter().append("circle")
         .attr("class", "node")
-        .attr("r", 1e-9)
+        .attr("r", 6)
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
         .style("fill", '#584392')
+        .style('cursor','pointer')
         .on('mouseover', showDetail)
         .on('mouseout', hideDetail)
         .on('click', function(d){
-            // d3.selectAll('.node').classed('activefix', false);
-            // d3.select(this)
-            // .classed('activefix', true);
-    
-            d3.select('.docp').text(d.name);
+
+            d3.selectAll('.node').style("fill", '#584392')
+            d3.select(this)
+            .style("fill", '#f00');
+
+            d3.select('.doc-name').html(d.name);
+            d3.select('.doc-budget').html('예산 '+formatComma(d.budget)+"원");
+            if(d.mom!=""){
+                d3.select('.docp').html('<hr><h3>회의록</h3>'+d.mom);
+            }else{
+                d3.select('.docp').html('');
+            };
         });
-    node.transition().duration(500).delay(function(d, i) { return i * 2; })
+    node.transition().duration(800).delay(function(d, i) { return i * 2; })
         .attr("r", 6)
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
     node.exit().transition()
-        .attr("r", 1e-9)
+        .attr("r", 6)
         .remove();
 
-    // d3.selectAll('.activefix')
-    // .attr('r',8).attr('stroke', '#000');
     }
 
     function showDetail(d) {
-        // change outline to indicate hover state.
         d3.select(this)
           .attr('stroke', '#ddd')
           .attr('stroke-width', 2)
-          .attr('r', 8)  
+          .attr('r', 10)  
         var content = '<span class="name">사업명: </span><span class="value">' +
                       d.name +
                       '</span><br/>' +
                       '<span class="name">예산: </span><span class="value">' +
-                      d.budget +
-                      '</span><br/>' +
+                      formatComma(d.budget)+
+                      '원</span><br/>' +
                       '<span class="name">기관: </span><span class="value">' +
                       d.sangim +
                       '</span>';
@@ -103,11 +125,13 @@ d3.csv('../budget_final.csv', function(error,data){
         tooltipfix.showTooltip(content, d3.event);
       }
     function hideDetail(d) {
-        // reset outline
         d3.select(this)
           .attr('stroke', 'none')
           .attr('r', 6)
     
         tooltipfix.hideTooltip();
       }
+
+  
 });
+
