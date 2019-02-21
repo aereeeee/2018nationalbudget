@@ -129,12 +129,11 @@ bottom: 0;
 .trigger{
 position:relative;
 opacity: .3;
-transition: all 1s;
+transition: all .5s;
 } 
 
 .trigger.graph-scroll-active{
 opacity: 1;
-transition: all 1s;
 }
 
 /* 트리거 안에 박스하나 더 만들어서 트리거는 svg랑 같이 높이 100, 박스를 중간배치 */
@@ -148,7 +147,7 @@ transform:translateY(-50%);
   font-size:14px;
 }
 .percent{
-  font-weight:600;
+  font-size:14px;
 }
 /* 고정형 인터랙브 */
   
@@ -263,6 +262,7 @@ transform:translateY(-50%);
   }
   .x-axis text{
     fill: #999;
+    font-size:14px;
   }
   .x-axis path{
     stroke: #999;
@@ -275,6 +275,9 @@ transform:translateY(-50%);
 
    /* 미디어쿼리 1024 */
    @media screen and (max-width: 1024px) {
+    .x-axis text{
+      font-size:10px;
+    }
     .img-graphic{
       width:100%;
       max-width:100%;
@@ -303,8 +306,8 @@ transform:translateY(-50%);
       margin: 0;
       min-height: 100vh;
       max-height: 100vh;
-      background:rgba(255,255,255,.9);
-        z-index:999;
+      background:rgba(255,255,255,.6);
+      z-index:999;
       }
 
       /* 그래프파트 (돔의 넓이 적용이 안됨 차트에..그래서 윈도우 넓이 적용해야만함.. 그래서 50/50)
@@ -312,11 +315,12 @@ transform:translateY(-50%);
       .graphic__vis {
       position: absolute;
       top: 0;
-      margin-left: 0;
+      margin-left:0;
       -webkit-transform: translate3d(0, 0, 0);
       -moz-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
       width:100%;
+      padding:0 20px;
       height: 100vh;
       pointer-events: none;
       }
@@ -324,12 +328,11 @@ transform:translateY(-50%);
       .trigger{
       position:relative;
       opacity: .3;
-      transition: all .2s;
+
       } 
 
       .trigger.graph-scroll-active{
       opacity: 1;
-      transition: all 1s;
       }
 
       /* 트리거 안에 박스하나 더 만들어서 트리거는 svg랑 같이 높이 100, 박스를 중간배치 */
@@ -341,6 +344,9 @@ transform:translateY(-50%);
       .percent{
         font-weight:600;
         display:none;
+      }
+      .percentline{
+        display: none;
       }
       /* 고정형 인터랙브 */
         

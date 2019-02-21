@@ -1,25 +1,35 @@
 
 function bubbleChart() {
-  var margin = 20
-	var width = window.innerWidth*0.5 - margin * 2
+  // var margin = 20
+  if(window.innerWidth>1024){
+    var width = window.innerWidth*0.5;
+    var radius=4;
+  }else{
+    var width = window.innerWidth;
+    var radius=3;
+  }
 	var height = window.innerHeight
   var tooltip = floatingTooltip('tooltip', 240);
   var center = { x: width / 2, y: height / 2 };
   var formatComma = d3.format(",");
-  var budgetaxis=['1,000만 원 ~ 1억 원','1억 원 ~ 10억 원', 
-                  '10억 원 ~ 100억 원', '100억 원 ~ 1,000억 원', '1,000억 원 ~'];
-  
-    var centers = {
-      0: { x: width / 2.5, y: height / 2 },
-      1: { x: width / 1.5, y: height / 2 },
-    };
+  var budgetaxis=['1,000만 원 -~ 1억 원','1억 원 -~ 10억 원', 
+                  '10억 원 -~ 100억 원', '100억 원 -~ 1,000억 원', '1,000억 원 ~'];
+  var centers = {
+    0: { x: width / 2.5, y: height / 2 },
+    1: { x: width / 1.5, y: height / 2 },
+  };
     var forceStrength = 0.03;
   
     var svg = null;
     var bubbles = null;
     var nodes = [];
+
     var count=0;
     var count1=0;
+    var count2=0;
+    var count3=0;
+    var count4=0;
+  console.log(center.x)
     function charge(d) {
       return -Math.pow(d.radius, 3.1) * forceStrength;
     }
@@ -29,8 +39,7 @@ function bubbleChart() {
       .force('x', d3.forceX().strength(forceStrength).x(center.x))
       .force('y', d3.forceY().strength(forceStrength).y(center.y))
       .force('charge', d3.forceManyBody().strength(charge))
-      .on('tick', ticked);
-  
+      .on('tick', ticked); 
     simulation.stop();
 
     
@@ -38,17 +47,30 @@ function bubbleChart() {
 
       rawData.forEach(function(d){
         if(10000000<=d.budget&&d.budget<100000000){
-          d.axes=0;      count++;
+          d.axis=0;      
+          d.yaxis=count++;
         }
-        else if(100000000<=d.budget&&d.budget<1000000000){d.axes=1;}//1억-10억
-        else if(1000000000<=d.budget&&d.budget<10000000000){d.axes=2; count1++}//10억 - 100억
-        else if(10000000000<=d.budget&&d.budget<100000000000){d.axes=3;}//100억 1000억 
-        else if(100000000000<=d.budget){d.axes=4;}//1000억 이상
+        else if(100000000<=d.budget&&d.budget<1000000000){
+          d.axis=1;
+          d.yaxis=count1++;
+        }//1억-10억
+        else if(1000000000<=d.budget&&d.budget<10000000000){
+          d.axis=2; 
+          d.yaxis=count2++;
+        }//10억 - 100억
+        else if(10000000000<=d.budget&&d.budget<100000000000){
+          d.axis=3;
+          d.yaxis=count3++;
+        }//100억 1000억 
+        else if(100000000000<=d.budget){
+          d.axis=4;
+          d.yaxis=count4++;
+        }//1000억 이상
       });
       var myNodes = rawData.map(function (d) {
         return {
           id: d.id,
-          radius: 4,
+          radius: radius,
           budget: +d.budget,
           name: d.name,
           a: d.sangim,
@@ -61,7 +83,8 @@ function bubbleChart() {
           groupC:d.C,
           x: Math.random() * 900,
           y: Math.random() * 800,
-          axes: d.axes
+          axis: d.axis,
+          yaxis: d.yaxis
         };
       });
       return myNodes;
@@ -69,14 +92,12 @@ function bubbleChart() {
  
     var chart = function chart( selector,rawData) {
       nodes = createNodes(rawData);
-      console.log(count);
-      console.log(count1);
       svg = d3.select(selector)
         .append('svg')
         .attr('width', '100%')
         .attr('height', '100%')
-        .attr('transform', 'translate(' + 20 + ',' + 20 + ')')
-        .attr("viewBox", "0 0 " + window.innerWidth*0.5 + " " + window.innerHeight )
+        // .attr('transform', 'translate(' + 20 + ',' + 20 + ')')
+        .attr("viewBox", "0 0 " + width + " " + height )
         .attr("preserveAspectRatio", "xMidYMid meet")
   
       bubbles = svg.selectAll('.bubble')
@@ -90,8 +111,8 @@ function bubbleChart() {
         .on('mouseout', hideDetail);
   
       bubbles.transition()
-        .duration(500)
-        .attr('r', 4);
+        .duration(800)
+        .attr('r', radius);
   
       simulation.nodes(nodes);
       groupBubbles();
@@ -106,10 +127,15 @@ function bubbleChart() {
       
       svg.append('text')
           .attr('class', 'percent')
-          .attr('x', width-150 )
+          // .attr('x', width-120 )
           .attr('y', height*0.5+220)
           .attr('text-anchor', 'middle')
           .attr('fill','#999');
+
+      svg.append('line')
+          .attr('class', 'percentline')
+          .attr("stroke", '#ddd')
+          .attr('stroke-width',2)
     };
   
    
@@ -155,10 +181,6 @@ function bubbleChart() {
     }
     function setcolorB(d) {
       d3.selectAll('.bubble')
-      // .attr('fill', function(d){
-      //   if(d.twoyear==1){return '#584392'}
-      //   else{return '#ddd'}
-      // })
       .attr('fill-opacity', function(d){
         if(d.twoyear==1){return 1}
         else{return .2}
@@ -166,10 +188,6 @@ function bubbleChart() {
     }
     function setcolorC(d) {
       d3.selectAll('.bubble')
-      // .attr('fill', function(d){
-      //   if(d.black==1){return '#584392'}
-      //   else{return '#ddd'}
-      // })
       .attr('fill-opacity', function(d){
         if(d.black==1){return 1}
         else{return .2}
@@ -177,7 +195,7 @@ function bubbleChart() {
     }
 
     function splitBubbles(g) {
-      showText(g);  
+      showText(g); 
       if (g === 'A') {
         setcolorA();
         simulation.force('x', d3.forceX().strength(forceStrength).x(nodeAPos));
@@ -193,6 +211,7 @@ function bubbleChart() {
 
     function hideText() {
       d3.selectAll('.percent').style('opacity','0');
+      d3.selectAll('.percentline').style('opacity','0');
     }
   
     var bottomdata={
@@ -200,17 +219,34 @@ function bubbleChart() {
       'B':'2년 연속 신규사업 28건',
       'C':'깜깜이 신규사업 128건',
     };
+    var bottompositionx={
+      'A': width-150,
+      'B': width-100,
+      'C': width-120,
+    };
+    var bottompositiony={
+      'A': height*0.5+170,
+      'B': height*0.5+90,
+      'C': height*0.5+130,
+    };
+    
 
     function showText(g) {
       d3.selectAll('.percent')
+      .transition().duration(1000)
         .style('opacity','1')
-        .transition()
-        .duration(1000)
+        .attr('x', bottompositionx[g])
         .text(bottomdata[g]);
+      d3.selectAll('.percentline')
+      .transition().duration(1000)
+        .style('opacity','1')
+        .attr('x1', bottompositionx[g])
+        .attr('x2', bottompositionx[g])
+        .attr("y1", height*0.5+200)
+        .attr('y2', bottompositiony[g]);
     
     }
     function showDetail(d) {
-      // change outline to indicate hover state.
       d3.select(this)
         .attr('stroke', '#ddd')
         .attr('stroke-width', 2)
@@ -229,105 +265,110 @@ function bubbleChart() {
     }
   
     function hideDetail(d) {
-      // reset outline
       d3.select(this)
         .attr('stroke', 'none')
-        .attr('r', 4);
-  
+        .attr('r', radius);
       tooltip.hideTooltip();
     }
     
     chart.toggleDisplay = function (displayName) {
       if (displayName != 'all'&& displayName!= 'axis') {
         splitBubbles(displayName);
-        toggleAxes(false);
+        toggleaxis(false);
       } 
       else if (displayName == 'axis'){
-        axesBubbles();
-        toggleAxes(true);
+        axisBubbles();
+        toggleaxis(true);
       }
       else {
         groupBubbles();
-        toggleAxes(false);
+        toggleaxis(false);
       }
     };
   
     // ********************************************************* */
     // axis chart!!
-    function axesBubbles() {
-      hideText();
-      d3.selectAll('.bubble')
-      .attr('fill', '#584392')
-      .attr('fill-opacity', 1);
-
+    function axisBubbles() {
+      hideText(); 
+      simulation.stop();
       ScaleX = d3.scaleBand()
         .domain([0,1,2,3,4])
-        .range([100,width-100]);
+        .range([20,width-20]);
+      ScaleaxisX = d3.scaleBand()
+        .domain(budgetaxis)
+        .range([20,width-20]);
+
       ScaleY = d3.scaleLinear()
-        .domain([1,2,3,4,5])
-        .range([height*0.5, 200]);
-      
+        .domain([0,255])
+        .range([height*0.5+100, 100]);
+
       var xOffset = ScaleX.bandwidth() / 2;
-      // var yOffset = ScaleY.bandwidth() / 2;
-        
-      
-      simulation
-      .force('x', d3.forceX().strength(.9).x(
-        function(d) {
-          return ScaleX(d.axes) + xOffset;
-        }
-      ))
+
+      d3.selectAll('.bubble')
+      .attr('fill', '#584392')
+      .attr('fill-opacity', 1)
+      .transition().duration(500)
+      .attr('cx',function(d) {
+            return ScaleX(d.axis)+xOffset;
+      })
+      .attr('cy',function(d) {
+        return ScaleY(d.yaxis);
+      });
+         
+    // var yOffset = ScaleY.bandwidth() / 2;
+          
+      // simulation
+      // .force('x', d3.forceX().strength(.9).x(
+      //   function(d) {
+      //     return ScaleX(d.axis) + xOffset;
+      //   }
+      // ))
       // .force('y', d3.forceY().strength(1).y(
       //   function(d) {
-      //     return ScaleY(d.yaxes) + yOffset;
+      //     return ScaleY(d.yaxis) + yOffset;
       //   }
       // ));
       // .force('charge', d3.forceManyBody().strength(-10))
     
-      simulation.alpha(0.4).restart();
+      // simulation.alpha(0.4).restart();
     }
 
-    function  toggleAxes(showAxes) {
+    var insertLinebreaks = function (word) {
+      var el = d3.select(this);
+      var words = word.toString().split('-');
+      el.text('');
+  
+      for (var i = 0; i < words.length; i++) {
+          var tspan = el.append('tspan').text(words[i]);
+          if (i > 0)
+              tspan.attr('x', 0).attr('dy', '20');
+      }
+    }
 
-         // yAxis = d3.select(".y-axis");
-
-      if (showAxes) {
-
+    function  toggleaxis(showaxis) {
+      if (showaxis) {
           if (d3.select(".x-axis").empty()) {
-            createAxes();
+            createaxis();
           }
           var xAxis = d3.select(".x-axis");      
-          translateAxis(xAxis, "translate(0," + (height*0.5 +200) + ")");
+          translateAxis(xAxis, "translate(0," + (height*0.5 +110) + ")");
       } else {
         if (!d3.select(".x-axis").empty()) {
           d3.select(".x-axis").remove(); 
         }
       }
 
-      function createAxes() {
-        var numberOfTicks = 10,
-            tickFormat = ".0s";
-
-        var xAxis = d3.axisBottom(ScaleX)
-          .ticks(5)
-          .tickFormat(function(d, i) {
-            return budgetaxis[i];
-          });
-
+      function createaxis() {
+        var xAxis = d3.axisBottom(ScaleaxisX)
+          .ticks(5);
 
         svg.append("g")
           .attr("class", "x-axis")
           .attr("transform", "translate(0," + (height) + ")")
           .call(xAxis)
           .selectAll(".tick text")
-            .attr("font-size", "10px");
-
-        // var yAxis = d3.axisLeft(ScaleY)
-        //   .ticks(numberOfTicks, tickFormat);
-        // svg.append("g")
-        //   .attr("class", "y-axis")
-        //   .attr("transform", "translate(" + offScreenXOffset + ",0)")
-        //   .call(yAxis);
+            .style("text-anchor", "start")
+            .each(insertLinebreaks);
       }
 
       function translateAxis(axis, translation) {

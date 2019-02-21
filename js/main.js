@@ -8,79 +8,34 @@ window.createGraphic = function(graphicSelector) {
 	var sizeheight=window.innerHeight
 	var chartSizeW = size - margin * 2
 	var chartSizeH = window.innerHeight
-	d3.csv('./budget_final.csv', display);
 	var steps = [
 		function step0() {
-			// 버블차트 생성 
-			// var t = d3.transition()
-			// 	.duration(800)
-			// 	.ease(d3.easeQuadInOut)
 			storyChart.toggleDisplay('all');
-
 		},
 
 		function step1() {
-			//액수에 따라 리스트 
-			var t = d3.transition()
-				.duration(800)
-				.ease(d3.easeQuadInOut)
-				storyChart.toggleDisplay('axis');
-			// circles are positioned
-	
+			storyChart.toggleDisplay('axis');
 		},
 
 		function step2() {
-			//지역성사업 342개
-			var t = d3.transition()
-				.duration(800)
-				.ease(d3.easeQuadInOut)
-				storyChart.toggleDisplay('A');
-			// circles are sized
-		
+			storyChart.toggleDisplay('A');
 		},
 
 		function step3() {
-			//2년연속사업 28개
-			var t = d3.transition()
-				.duration(800)
-				.ease(d3.easeQuadInOut)
-				storyChart.toggleDisplay('B');
+			storyChart.toggleDisplay('B');
 		},
 
 		function step4() {
-			//깜깜이 사업 128개
-			var t = d3.transition()
-				.duration(800)
-				.ease(d3.easeQuadInOut)
-				storyChart.toggleDisplay('C');
-		},
-		function step5() {
+			storyChart.toggleDisplay('C');
 		},
 	]
 
-	// update our chart
 	function update(step) {
 		steps[step].call()
 	}
 	
-	// little helper for string concat if using es5
-	function translate(x, y) {
-		return 'translate(' + x + ',' + y + ')'
-	}
-
 	function setupCharts() {
-		// var svg = graphicVisEl.append('svg')
-		// 	.attr('width', '100%')
-		// 	.attr('height', '100%')
-		// 	.attr("viewBox", "0 0 " + size + " " + sizeheight )
-		// 	.attr("preserveAspectRatio", "xMidYMid meet")
-	
-		// var chart = svg.append('g')
-		// 	.classed('chart', true)
-		// 	.attr('transform', 'translate(' + margin + ',' + margin + ')')
-
-		// d3.csv('./budget_final.csv', display );
-
+		d3.csv('./budget_final.csv', display);
 	}
 
 	function setupProse() {
