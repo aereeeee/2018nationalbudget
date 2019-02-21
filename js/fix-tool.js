@@ -4,7 +4,7 @@ var formatComma = d3.format(",");
 if(window.innerWidth>1024){
     var grid = d3.grid()
     .points()
-    .size([widthf*0.5-40, heightf-40]);
+    .size([widthf*0.55-40, heightf-40]);
     var tooltipfix = floatingTooltip('tooltip-fix', 240);
 }else{
     var grid = d3.grid()
@@ -83,16 +83,34 @@ d3.csv('./budget_final.csv', function(error,data){
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
         .style("fill", '#584392')
         .style('cursor','pointer')
-        .on('mouseover', function(){
+        .on('mouseover', function(d){
             if(window.innerWidth>1024){
-                return showDetail;
+                d3.select(this)
+                .attr('stroke', '#ddd')
+                .attr('stroke-width', 2)
+                .attr('r', 10)  
+              var content = '<span class="name">사업명: </span><span class="value">' +
+                            d.name +
+                            '</span><br/>' +
+                            '<span class="name">예산: </span><span class="value">' +
+                            formatComma(d.budget)+
+                            '원</span><br/>' +
+                            '<span class="name">기관: </span><span class="value">' +
+                            d.sangim +
+                            '</span>';
+          
+              tooltipfix.showTooltip(content, d3.event);
             }else{
                 return;
             }
         })
-        .on('mouseout', function(){
+        .on('mouseout', function(d){
             if(window.innerWidth>1024){
-                return hideDetail;
+                d3.select(this)
+                .attr('stroke', 'none')
+                .attr('r', 6)
+                
+                tooltipfix.hideTooltip();
             }else{
                 return;
             }
@@ -106,7 +124,7 @@ d3.csv('./budget_final.csv', function(error,data){
             d3.select('.doc-name').html(d.name);
             d3.select('.doc-budget').html('예산 '+formatComma(d.budget)+"원");
             if(d.mom!=""){
-                d3.select('.docp').html('<hr><h3>회의록</h3>'+d.mom);
+                d3.select('.docp').html('<h3>회의록</h3>'+d.mom);
             }else{
                 d3.select('.docp').html('');
             };
@@ -119,32 +137,6 @@ d3.csv('./budget_final.csv', function(error,data){
         .remove();
 
     }
-
-    function showDetail(d) {
-        d3.select(this)
-          .attr('stroke', '#ddd')
-          .attr('stroke-width', 2)
-          .attr('r', 10)  
-        var content = '<span class="name">사업명: </span><span class="value">' +
-                      d.name +
-                      '</span><br/>' +
-                      '<span class="name">예산: </span><span class="value">' +
-                      formatComma(d.budget)+
-                      '원</span><br/>' +
-                      '<span class="name">기관: </span><span class="value">' +
-                      d.sangim +
-                      '</span>';
-    
-        tooltipfix.showTooltip(content, d3.event);
-      }
-    function hideDetail(d) {
-        d3.select(this)
-          .attr('stroke', 'none')
-          .attr('r', 6)
-    
-        tooltipfix.hideTooltip();
-      }
-
   
 });
 

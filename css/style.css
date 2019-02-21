@@ -150,6 +150,9 @@ transform:translateY(-50%);
     margin: 4rem auto;
     position: relative;
   }
+  .fix-text{
+    margin:20px 0;
+  }
   #toolbar{
     float:left;
     width:100%;
@@ -193,7 +196,7 @@ transform:translateY(-50%);
 
   #vis {
     box-sizing: border-box;
-    width:50%;
+    width:55%;
     height:600px;
     float:left;
     margin-bottom:4rem;
@@ -201,7 +204,8 @@ transform:translateY(-50%);
   .doc-title{
     width:45%;
     float:right;
-    padding:0 30px;
+    padding:0 30px 20px 30px;
+    border-left:1px solid #ddd;
   }
   .doc-mom{
     float:right;
@@ -209,11 +213,11 @@ transform:translateY(-50%);
     width:45%;
     border-left:1px solid #ddd;
     height:550px;
-    padding:20px 30px;
+    padding:0 30px 20px 30px;
     overflow:scroll;
     line-height:170%;
   }
-  .doc span{
+  .doc-mom span{
     font-weight:bold;
   }
   .doc-name, .doc-budget{
@@ -237,9 +241,6 @@ transform:translateY(-50%);
     color: black;
     padding: 10px;
     z-index: 10;
-  }
-  
-  .tooltip .title {
   }
   
   .tooltip .name {
@@ -354,7 +355,7 @@ transform:translateY(-50%);
           float:none;
           width:100%;
           box-sizing: border-box;
-          margin:0 0 20px 0;
+          margin:30px 0;
         }
         .button {
           width:100%;
@@ -378,9 +379,6 @@ transform:translateY(-50%);
           background: #584392;
           color: #fff;
         }
-        .fix-text{
-          margin:20px;
-        }
         .disc{
           clear:both;
           width:100%;
@@ -394,7 +392,7 @@ transform:translateY(-50%);
           box-sizing: border-box;
           width:100%;
           height:600px;
-          float:left;
+          float:none;
           margin-bottom:20px;
         }
         
@@ -404,6 +402,7 @@ transform:translateY(-50%);
           padding:0;
           text-align:center;
           margin-bottom:10px;
+          border-left:none;
         }
         .doc-mom{
           float:none;

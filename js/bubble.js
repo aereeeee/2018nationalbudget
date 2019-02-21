@@ -4,9 +4,11 @@ function bubbleChart() {
   if(window.innerWidth>1024){
     var width = window.innerWidth*0.5;
     var radius=4;
+    var axismargin=50;
   }else{
     var width = window.innerWidth;
     var radius=3.5;
+    var axismargin=20;
   }
 	var height = window.innerHeight
   var tooltip = floatingTooltip('tooltip', 240);
@@ -293,10 +295,10 @@ function bubbleChart() {
       simulation.stop();
       ScaleX = d3.scaleBand()
         .domain([0,1,2,3,4])
-        .range([20,width-20]);
+        .range([axismargin,width-axismargin]);
       ScaleaxisX = d3.scaleBand()
         .domain(budgetaxis)
-        .range([20,width-20]);
+        .range([axismargin,width-axismargin]);
 
       ScaleY = d3.scaleLinear()
         .domain([0,255])
