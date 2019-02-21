@@ -5,6 +5,7 @@ if(window.innerWidth>1024){
     var grid = d3.grid()
     .points()
     .size([widthf*0.5-40, heightf-40]);
+    var tooltipfix = floatingTooltip('tooltip-fix', 240);
 }else{
     var grid = d3.grid()
     .points()
@@ -14,7 +15,7 @@ if(window.innerWidth>1024){
 //     .points()
 //     .size([widthf*0.5-40, heightf-40]);
 
-var tooltipfix = floatingTooltip('tooltip-fix', 240);
+
 d3.csv('./budget_final.csv', function(error,data){
     if (error) throw error;
     var sortBy = {
@@ -82,8 +83,20 @@ d3.csv('./budget_final.csv', function(error,data){
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
         .style("fill", '#584392')
         .style('cursor','pointer')
-        .on('mouseover', showDetail)
-        .on('mouseout', hideDetail)
+        .on('mouseover', function(){
+            if(window.innerWidth>1024){
+                return showDetail;
+            }else{
+                return;
+            }
+        })
+        .on('mouseout', function(){
+            if(window.innerWidth>1024){
+                return hideDetail;
+            }else{
+                return;
+            }
+        })
         .on('click', function(d){
 
             d3.selectAll('.node').style("fill", '#584392')
@@ -98,7 +111,7 @@ d3.csv('./budget_final.csv', function(error,data){
                 d3.select('.docp').html('');
             };
         });
-    node.transition().duration(800).delay(function(d, i) { return i * 2; })
+    node.transition().duration(600).delay(function(d, i) { return i * 2; })
         .attr("r", 6)
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
     node.exit().transition()

@@ -29,7 +29,7 @@ function bubbleChart() {
     var count2=0;
     var count3=0;
     var count4=0;
-  console.log(center.x)
+
     function charge(d) {
       return -Math.pow(d.radius, 3.1) * forceStrength;
     }
