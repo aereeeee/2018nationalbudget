@@ -15,7 +15,7 @@ if(window.innerWidth>1024){
 //     .size([widthf*0.5-40, heightf-40]);
 
 var tooltipfix = floatingTooltip('tooltip-fix', 240);
-d3.csv('../budget_final.csv', function(error,data){
+d3.csv('./budget_final.csv', function(error,data){
     if (error) throw error;
     var sortBy = {
     A: d3.comparator()
