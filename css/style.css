@@ -40,7 +40,7 @@ main {
   .intro {
     /* background:url('../img/banner.jpg'); */
     max-width: 760px;
-    margin: 7rem auto 0 auto;
+    margin: 8rem auto 0 auto;
     padding:0 20px;
     text-align:center;
   }
@@ -57,7 +57,9 @@ main {
     font-weight:500;
     color:#868e96;
   }
-
+.pc{
+  margin:20px 0;
+}
 /* 스크롤 인터랙티브 */
 .disc.scroll{
   /* position: absolute;
@@ -213,8 +215,8 @@ transform:translateY(-50%);
     clear:both;
     width:100%;
     color:#868e96;
-    font-size:12px;
-    line-height: 16px;
+    font-size:14px;
+    line-height: 18px;
     margin-bottom:20px;
   }
 
