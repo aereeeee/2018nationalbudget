@@ -7,7 +7,7 @@ function bubbleChart() {
     var axismargin=50;
   }else{
     var width = window.innerWidth;
-    var radius=3.5;
+    var radius=3.2;
     var axismargin=20;
   }
 	var height = window.innerHeight
