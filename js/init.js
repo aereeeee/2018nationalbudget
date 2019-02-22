@@ -30,11 +30,11 @@ function sharetwit(url, text) {
 };
 
 $('#facebook').on("click", function() {
-    sharefb('http://mabu.newscloud.sbs.co.kr/201807refugee');
+    sharefb('http://mabu.newscloud.sbs.co.kr/201902budget');
 });
 
 $('#twitter').on("click", function() {
-    sharetwit('http://mabu.newscloud.sbs.co.kr/201807refugee', 'SBS마부작침: ');
+    sharetwit('http://mabu.newscloud.sbs.co.kr/201902budget', 'SBS마부작침: ');
 });
 
 

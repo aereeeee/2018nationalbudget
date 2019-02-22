@@ -37,9 +37,9 @@ d3.csv('./budget_final.csv', function(error,data){
         .attr('height' , '100%')
         .attr("viewBox",function(){
             if(window.innerWidth>1024){
-               return  "0 0 " + widthf*0.5 + " " + heightf;
+               return  "0 0 " + widthf*0.55 + " " + heightf;
             }else{
-                return "0 0 " + window.innerWidth-80 + " " + heightf
+                return "0 0 " + window.innerWidth-40 + " " + heightf
             }
         })
         .attr("preserveAspectRatio", "xMidYMid meet")

@@ -97,7 +97,9 @@
 			letter-spacing: -1px;
 			/*font-family: sans-serif;*/
 		}
-
+		.articlebox{
+			color:#Fff;
+		}
 		#fteamname {
 			font-size: 1.1em;
 			color:#fff;
