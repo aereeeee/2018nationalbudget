@@ -9,7 +9,7 @@ if(window.innerWidth>1024){
 }else{
     var grid = d3.grid()
     .points()
-    .size([window.innerWidth-120, heightf-40]);
+    .size([window.innerWidth-80, heightf-40]);
 }
 // var grid = d3.grid()
 //     .points()

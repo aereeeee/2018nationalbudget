@@ -375,19 +375,13 @@ transform:translateY(-50%);
           margin: 4rem auto;
           position: relative;
         }
-/* 
-        #toolbar{
-          float:left;
-          width:100%;
-          box-sizing: border-box;
-          margin-bottom:50px;
-          height:50px;
-          line-height:50px;
-          background: none;
-          color:#000;
-        } */
+
         .toolwrap{
-          padding:0 20px;
+          
+          -webkit-box-shadow: none; 
+          box-shadow:none;
+          padding:0;
+          padding-bottom:30px;
         }
 
         #toolbar{
@@ -454,7 +448,7 @@ transform:translateY(-50%);
           width:100%;
           border-left:none;
           height:auto;
-          padding-bottom:20px;
+          padding:30px 0px;
           overflow:visible;
           line-height:170%;
         }
