@@ -52,9 +52,6 @@ main {
     font-weight:500;
     color:#888;
   }
-  .plog{
-
-  }
 
 /* 스크롤 인터랙티브 */
 .library {
@@ -80,8 +77,6 @@ max-height: 100vh;
 
 }
 
-/* 그래프파트 (돔의 넓이 적용이 안됨 차트에..그래서 윈도우 넓이 적용해야만함.. 그래서 50/50)
-높이 걍 100 */
 .graphic__vis {
 position: absolute;
 top: 0;
@@ -113,9 +108,6 @@ transform: translateY(-50%); */
 
 }
 
-
-
-/* graph-scroll.js version */
 .graphic__vis.graph-scroll-fixed {
 position: fixed;
 right: auto;
@@ -129,12 +121,11 @@ bottom: 0;
 .trigger{
 position:relative;
 opacity: .3;
-transition: all 1s;
+transition: all .5s;
 } 
 
 .trigger.graph-scroll-active{
 opacity: 1;
-transition: all 1s;
 }
 
 /* 트리거 안에 박스하나 더 만들어서 트리거는 svg랑 같이 높이 100, 박스를 중간배치 */
@@ -148,14 +139,19 @@ transform:translateY(-50%);
   font-size:14px;
 }
 .percent{
-  font-weight:600;
+  font-size:14px;
 }
+
+
 /* 고정형 인터랙브 */
   
   .container {
     width:80%;
     margin: 4rem auto;
     position: relative;
+  }
+  .fix-text{
+    margin:20px 0;
   }
   #toolbar{
     float:left;
@@ -193,39 +189,40 @@ transform:translateY(-50%);
     clear:both;
     width:100%;
     color:#999;
-    padding:20px;
-    font-size:14px;
-    margin-bottom:30px;
+    font-size:12px;
+    line-height: 16px;
+    margin-bottom:20px;
   }
 
   #vis {
     box-sizing: border-box;
-    width:50%;
+    width:55%;
     height:600px;
     float:left;
     margin-bottom:4rem;
   }
-  
-  .doc{
-    float:left;
+  .doc-title{
+    width:45%;
+    float:right;
+    padding:0 30px 20px 30px;
+    border-left:1px solid #ddd;
+  }
+  .doc-mom{
+    float:right;
     box-sizing: border-box;
     width:45%;
-    padding-left:5%;
     border-left:1px solid #ddd;
-    height:600px;
-    padding:20px 30px;
-    /* border:1px solid #000; */
+    height:550px;
+    padding:0 30px 20px 30px;
     overflow:scroll;
     line-height:170%;
-    /* -webkit-box-shadow: -9px 10px 54px -15px rgba(0,0,0,0.38);
-    -moz-box-shadow: -9px 10px 54px -15px rgba(0,0,0,0.38);
-    box-shadow: -9px 10px 54px -15px rgba(0,0,0,0.38); */
   }
-  .doc span{
+  .doc-mom span{
     font-weight:bold;
   }
   .doc-name, .doc-budget{
     color:#584392;
+    font-weight:bold;
   }
   #toolbar {
     margin-top: 10px;
@@ -246,9 +243,6 @@ transform:translateY(-50%);
     z-index: 10;
   }
   
-  .tooltip .title {
-  }
-  
   .tooltip .name {
     font-weight:bold;
   }
@@ -263,6 +257,7 @@ transform:translateY(-50%);
   }
   .x-axis text{
     fill: #999;
+    font-size:14px;
   }
   .x-axis path{
     stroke: #999;
@@ -275,6 +270,9 @@ transform:translateY(-50%);
 
    /* 미디어쿼리 1024 */
    @media screen and (max-width: 1024px) {
+    .x-axis text{
+      font-size:10px;
+    }
     .img-graphic{
       width:100%;
       max-width:100%;
@@ -303,8 +301,8 @@ transform:translateY(-50%);
       margin: 0;
       min-height: 100vh;
       max-height: 100vh;
-      background:rgba(255,255,255,.9);
-        z-index:999;
+      background:rgba(255,255,255,.6);
+      z-index:999;
       }
 
       /* 그래프파트 (돔의 넓이 적용이 안됨 차트에..그래서 윈도우 넓이 적용해야만함.. 그래서 50/50)
@@ -312,11 +310,12 @@ transform:translateY(-50%);
       .graphic__vis {
       position: absolute;
       top: 0;
-      margin-left: 0;
+      margin-left:0;
       -webkit-transform: translate3d(0, 0, 0);
       -moz-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
       width:100%;
+      padding:0 20px;
       height: 100vh;
       pointer-events: none;
       }
@@ -324,12 +323,11 @@ transform:translateY(-50%);
       .trigger{
       position:relative;
       opacity: .3;
-      transition: all .2s;
+
       } 
 
       .trigger.graph-scroll-active{
       opacity: 1;
-      transition: all 1s;
       }
 
       /* 트리거 안에 박스하나 더 만들어서 트리거는 svg랑 같이 높이 100, 박스를 중간배치 */
@@ -341,6 +339,9 @@ transform:translateY(-50%);
       .percent{
         font-weight:600;
         display:none;
+      }
+      .percentline{
+        display: none;
       }
       /* 고정형 인터랙브 */
         
@@ -354,7 +355,7 @@ transform:translateY(-50%);
           float:none;
           width:100%;
           box-sizing: border-box;
-          margin:0 0 50px 0;
+          margin:30px 0;
         }
         .button {
           width:100%;
@@ -378,39 +379,39 @@ transform:translateY(-50%);
           background: #584392;
           color: #fff;
         }
-        
         .disc{
           clear:both;
           width:100%;
           color:#999;
-          padding:20px;
-          font-size:14px;
-          margin-bottom:30px;
+          font-size:12px;
+          line-height: 16px;
+          margin-bottom:20px;
         }
 
         #vis {
           box-sizing: border-box;
           width:100%;
           height:600px;
-          float:left;
-          margin-bottom:4rem;
+          float:none;
+          margin-bottom:20px;
         }
         
-        .doc{
+        .doc-title{
+          width:100%;
+          float:none;
+          padding:0;
+          text-align:center;
+          margin-bottom:10px;
+          border-left:none;
+        }
+        .doc-mom{
           float:none;
           box-sizing: border-box;
           width:100%;
-          padding-left:5%;
           border-left:none;
-          border-top:1px solid #ddd;
           height:auto;
-          padding:20px 30px;
-          /* border:1px solid #000; */
-          overflow:initial;
+          padding:0;
+          overflow:visible;
           line-height:170%;
-          /* -webkit-box-shadow: -9px 10px 54px -15px rgba(0,0,0,0.38);
-          -moz-box-shadow: -9px 10px 54px -15px rgba(0,0,0,0.38);
-          box-shadow: -9px 10px 54px -15px rgba(0,0,0,0.38); */
         }
-    
    }
