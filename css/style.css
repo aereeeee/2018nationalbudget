@@ -3,7 +3,7 @@
   width: 0px;  /* remove scrollbar space */
   background: transparent;  /* optional: just make scrollbar invisible */
 }
-
+html{-webkit-overflow-scrolling : touch;}
 body, h1, h2, h3, h4, h5, p, div , li{
   font-family: 'Noto Sans KR', sans-serif;
 }
