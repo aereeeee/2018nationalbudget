@@ -52,7 +52,7 @@
 		          top: 0;
 		          left: 0;
 		          z-index: 997;
-		          background-color: #584392;
+		          background-color: #5f3dc4;
 		} 
   		
   		.sbslogo {
@@ -86,8 +86,8 @@
 		#footerbar { 
 		            width: 100%;
 		            height: auto;
-		            background-color:#584392;
-		            padding: 60px 2%;
+		            background-color:#5f3dc4;
+		            padding: 60px 3%;
 		            float: left;
 		            z-index: 999;
 
@@ -156,7 +156,7 @@
 			width: 100%;
 			height: auto;
 			padding: 10px 2%;
-			background-color:#584392; 
+			background-color:#5f3dc4; 
 			float: left;
 			z-index: 10;
 		}

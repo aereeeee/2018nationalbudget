@@ -76,7 +76,7 @@ function bubbleChart() {
           budget: +d.budget,
           name: d.name,
           a: d.sangim,
-          b: d.sogwan,
+          sogwan: d.sogwan,
           local: d.local,
           twoyear: d.twoyear,
           black: d.black,
@@ -107,7 +107,7 @@ function bubbleChart() {
         .enter().append('circle')
         .classed('bubble', true)
         .attr('r', 0)
-        .attr('fill', '#584392')
+        .attr('fill', '#7048e8')
         .attr('fill-opacity', 1)
         .on('mouseover', showDetail)
         .on('mouseout', hideDetail);
@@ -125,19 +125,19 @@ function bubbleChart() {
           .attr('y', height*0.5-200)
           .attr('text-anchor', 'right')
           .text('총 453건')
-          .attr('fill','#999');
+          .attr('fill','#868e96');
       
       svg.append('text')
           .attr('class', 'percent')
           // .attr('x', width-120 )
-          .attr('y', height*0.5+220)
+          .attr('y', height*0.5+200)
           .attr('text-anchor', 'middle')
-          .attr('fill','#999');
+          .attr('fill','#868e96');
 
-      svg.append('line')
-          .attr('class', 'percentline')
-          .attr("stroke", '#ddd')
-          .attr('stroke-width',2)
+      // svg.append('line')
+      //     .attr('class', 'percentline')
+      //     .attr("stroke", '#ced4da')
+      //     .attr('stroke-width',2)
     };
   
    
@@ -163,7 +163,7 @@ function bubbleChart() {
     function groupBubbles() {   
       hideText();
       d3.selectAll('.bubble')
-      .attr('fill', '#584392')
+      .attr('fill', '#7048e8')
       .attr('fill-opacity', 1);
 
       simulation.force('x', d3.forceX().strength(forceStrength).x(center.x));
@@ -173,8 +173,8 @@ function bubbleChart() {
     function setcolorA(d) {
       d3.selectAll('.bubble')
       // .attr('fill', function(d){
-      //   if(d.local==1){return '#584392'}
-      //   else{return '#ddd'}
+      //   if(d.local==1){return '#7048e8'}
+      //   else{return '#ced4da'}
       // })
       .attr('fill-opacity', function(d){
         if(d.local==1){return 1}
@@ -222,9 +222,9 @@ function bubbleChart() {
       'C':'깜깜이 신규사업 128건',
     };
     var bottompositionx={
-      'A': width-150,
-      'B': width-100,
-      'C': width-120,
+      'A': width-160,
+      'B': width-120,
+      'C': width-150,
     };
     var bottompositiony={
       'A': height*0.5+170,
@@ -239,18 +239,18 @@ function bubbleChart() {
         .style('opacity','1')
         .attr('x', bottompositionx[g])
         .text(bottomdata[g]);
-      d3.selectAll('.percentline')
-      .transition().duration(1000)
-        .style('opacity','1')
-        .attr('x1', bottompositionx[g])
-        .attr('x2', bottompositionx[g])
-        .attr("y1", height*0.5+200)
-        .attr('y2', bottompositiony[g]);
+      // d3.selectAll('.percentline')
+      // .transition().duration(1000)
+      //   .style('opacity','1')
+      //   .attr('x1', bottompositionx[g])
+      //   .attr('x2', bottompositionx[g])
+      //   .attr("y1", height*0.5+200)
+      //   .attr('y2', bottompositiony[g]);
     
     }
     function showDetail(d) {
       d3.select(this)
-        .attr('stroke', '#ddd')
+        .attr('stroke', '#ced4da')
         .attr('stroke-width', 2)
         .attr('r', 10);
       var content = '<span class="name">사업명: </span><span class="value">' +
@@ -259,8 +259,8 @@ function bubbleChart() {
                     '<span class="name">예산: </span><span class="value">' +
                     formatComma(d.budget)+
                     ' 원</span><br/>' +
-                    '<span class="name">기관: </span><span class="value">' +
-                    d.a +
+                    '<span class="name">소관: </span><span class="value">' +
+                    d.sogwan +
                     '</span>';
   
       tooltip.showTooltip(content, d3.event);
@@ -302,12 +302,12 @@ function bubbleChart() {
 
       ScaleY = d3.scaleLinear()
         .domain([0,255])
-        .range([height*0.5+100, 100]);
+        .range([height*0.5+150, 200]);
 
       var xOffset = ScaleX.bandwidth() / 2;
 
       d3.selectAll('.bubble')
-      .attr('fill', '#584392')
+      .attr('fill', '#7048e8')
       .attr('fill-opacity', 1)
       .transition().duration(500)
       .attr('cx',function(d) {
@@ -353,7 +353,7 @@ function bubbleChart() {
             createaxis();
           }
           var xAxis = d3.select(".x-axis");      
-          translateAxis(xAxis, "translate(0," + (height*0.5 +110) + ")");
+          translateAxis(xAxis, "translate(0," + (height*0.5 +160) + ")");
       } else {
         if (!d3.select(".x-axis").empty()) {
           d3.select(".x-axis").remove(); 

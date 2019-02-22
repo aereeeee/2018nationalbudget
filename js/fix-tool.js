@@ -9,7 +9,7 @@ if(window.innerWidth>1024){
 }else{
     var grid = d3.grid()
     .points()
-    .size([window.innerWidth-80, heightf-40]);
+    .size([window.innerWidth-120, heightf-40]);
 }
 // var grid = d3.grid()
 //     .points()
@@ -81,12 +81,12 @@ d3.csv('./budget_final.csv', function(error,data){
         .attr("class", "node")
         .attr("r", 6)
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-        .style("fill", '#584392')
+        .style("fill", '#7048e8')
         .style('cursor','pointer')
         .on('mouseover', function(d){
             if(window.innerWidth>1024){
                 d3.select(this)
-                .attr('stroke', '#ddd')
+                .attr('stroke', '#ced4da')
                 .attr('stroke-width', 2)
                 .attr('r', 10)  
               var content = '<span class="name">사업명: </span><span class="value">' +
@@ -95,8 +95,8 @@ d3.csv('./budget_final.csv', function(error,data){
                             '<span class="name">예산: </span><span class="value">' +
                             formatComma(d.budget)+
                             '원</span><br/>' +
-                            '<span class="name">기관: </span><span class="value">' +
-                            d.sangim +
+                            '<span class="name">소관: </span><span class="value">' +
+                            d.sogwan +
                             '</span>';
           
               tooltipfix.showTooltip(content, d3.event);
@@ -117,14 +117,14 @@ d3.csv('./budget_final.csv', function(error,data){
         })
         .on('click', function(d){
 
-            d3.selectAll('.node').style("fill", '#584392')
+            d3.selectAll('.node').style("fill", '#7048e8')
             d3.select(this)
-            .style("fill", '#f00');
+            .style("fill", '#f76707');
 
             d3.select('.doc-name').html(d.name);
             d3.select('.doc-budget').html('예산 '+formatComma(d.budget)+"원");
             if(d.mom!=""){
-                d3.select('.docp').html('<h3>회의록</h3>'+d.mom);
+                d3.select('.docp').html('<hr><h3>회의록</h3>'+d.mom);
             }else{
                 d3.select('.docp').html('');
             };
