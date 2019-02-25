@@ -4,6 +4,7 @@
   background: transparent;  /* optional: just make scrollbar invisible */
 }
 html{
+  -webkit-overflow-scrolling: touch;
   word-break: keep-all;
 }
 
@@ -109,6 +110,7 @@ height: 100vh;
 
 .graphic__vis.is-fixed {
 position: fixed;
+-webkit-backface-visibility: hidden;
 }
 
 .graphic__vis.is-bottom {
@@ -117,11 +119,11 @@ bottom: 0;
 }
 
 .graphic__vis svg {
-position: relative;
 }
 
 .graphic__vis.graph-scroll-fixed {
 position: fixed;
+-webkit-backface-visibility: hidden;
 right: auto;
 }
 
@@ -337,6 +339,7 @@ transform:translateY(-50%);
       width:100%;
       padding:0 20px;
       height: 100vh;
+      -webkit-overflow-scrolling: touch;
       pointer-events: none;
       }
 
