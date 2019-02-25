@@ -11,10 +11,6 @@ if(window.innerWidth>1024){
     .points()
     .size([window.innerWidth-80, heightf-40]);
 }
-// var grid = d3.grid()
-//     .points()
-//     .size([widthf*0.5-40, heightf-40]);
-
 
 d3.csv('./budget_final.csv', function(error,data){
     if (error) throw error;
