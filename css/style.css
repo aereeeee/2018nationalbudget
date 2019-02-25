@@ -274,7 +274,7 @@ transform:translateY(-50%);
     text-align: center;
   }
   .x-axis text{
-    fill: #868e96;
+    fill: #212529;
     font-size:14px;
   }
   .x-axis path{
@@ -309,11 +309,13 @@ transform:translateY(-50%);
       .graphic {
       width: 100%;
       position: relative;
+      pointer-events: none;
       }
       .graphic__prose {
       width:100vw;
       padding-left:20px;
       padding-right:20px;
+      pointer-events: none;
       }
 
       .graphic__prose .trigger {
