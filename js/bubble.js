@@ -1,6 +1,5 @@
 
 function bubbleChart() {
-  // var margin = 20
   if(window.innerWidth>1024){
     var width = window.innerWidth*0.5;
     var radius=4;
@@ -43,10 +42,8 @@ function bubbleChart() {
       .force('charge', d3.forceManyBody().strength(charge))
       .on('tick', ticked); 
     simulation.stop();
-
-    
+  
     function createNodes(rawData) {
-
       rawData.forEach(function(d){
         if(10000000<=d.budget&&d.budget<100000000){
           d.axis=0;      
@@ -98,7 +95,6 @@ function bubbleChart() {
         .append('svg')
         .attr('width', '100%')
         .attr('height', '100%')
-        // .attr('transform', 'translate(' + 20 + ',' + 20 + ')')
         .attr("viewBox", "0 0 " + width + " " + height )
         .attr("preserveAspectRatio", "xMidYMid meet")
   
@@ -113,7 +109,7 @@ function bubbleChart() {
         .on('mouseout', hideDetail);
   
       bubbles.transition()
-        .duration(800)
+        .duration(400)
         .attr('r', radius);
   
       simulation.nodes(nodes);
@@ -133,21 +129,13 @@ function bubbleChart() {
           .attr('y', height*0.5+200)
           .attr('text-anchor', 'middle')
           .attr('fill','#868e96');
-
-      // svg.append('line')
-      //     .attr('class', 'percentline')
-      //     .attr("stroke", '#ced4da')
-      //     .attr('stroke-width',2)
     };
-  
    
-
     function ticked() {
       d3.selectAll('.bubble')
         .attr('cx', function (d) { return d.x; })
         .attr('cy', function (d) { return d.y; });
     }
-  
   
     function nodeAPos(d) {
       return centers[d.local].x;
@@ -158,7 +146,6 @@ function bubbleChart() {
     function nodeCPos(d) {
       return centers[d.black].x;
     }
-  
   
     function groupBubbles() {   
       hideText();
@@ -172,10 +159,6 @@ function bubbleChart() {
   
     function setcolorA(d) {
       d3.selectAll('.bubble')
-      // .attr('fill', function(d){
-      //   if(d.local==1){return '#7048e8'}
-      //   else{return '#ced4da'}
-      // })
       .attr('fill-opacity', function(d){
         if(d.local==1){return 1}
         else{return .2}
@@ -232,21 +215,12 @@ function bubbleChart() {
       'C': height*0.5+130,
     };
     
-
     function showText(g) {
       d3.selectAll('.percent')
       .transition().duration(1000)
         .style('opacity','1')
         .attr('x', bottompositionx[g])
         .text(bottomdata[g]);
-      // d3.selectAll('.percentline')
-      // .transition().duration(1000)
-      //   .style('opacity','1')
-      //   .attr('x1', bottompositionx[g])
-      //   .attr('x2', bottompositionx[g])
-      //   .attr("y1", height*0.5+200)
-      //   .attr('y2', bottompositiony[g]);
-    
     }
     function showDetail(d) {
       d3.select(this)
@@ -262,7 +236,6 @@ function bubbleChart() {
                     '<span class="name">소관: </span><span class="value">' +
                     d.sogwan +
                     '</span>';
-  
       tooltip.showTooltip(content, d3.event);
     }
   
@@ -288,7 +261,6 @@ function bubbleChart() {
       }
     };
   
-    // ********************************************************* */
     // axis chart!!
     function axisBubbles() {
       hideText(); 
@@ -316,23 +288,7 @@ function bubbleChart() {
       .attr('cy',function(d) {
         return ScaleY(d.yaxis);
       });
-         
-    // var yOffset = ScaleY.bandwidth() / 2;
-          
-      // simulation
-      // .force('x', d3.forceX().strength(.9).x(
-      //   function(d) {
-      //     return ScaleX(d.axis) + xOffset;
-      //   }
-      // ))
-      // .force('y', d3.forceY().strength(1).y(
-      //   function(d) {
-      //     return ScaleY(d.yaxis) + yOffset;
-      //   }
-      // ));
-      // .force('charge', d3.forceManyBody().strength(-10))
-    
-      // simulation.alpha(0.4).restart();
+
     }
 
     var insertLinebreaks = function (word) {
@@ -381,10 +337,6 @@ function bubbleChart() {
       }
     }
 
-
-
-    //********************************************************* */
-    // 클로저로 부터 차트 반환
     return chart;
   }
   

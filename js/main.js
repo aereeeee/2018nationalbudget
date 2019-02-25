@@ -1,13 +1,7 @@
 window.createGraphic = function(graphicSelector) {
 	var graphicEl = d3.select('.graphic')
-	var graphicVisEl = graphicEl.select('.graphic__vis')
 	var graphicProseEl = graphicEl.select('.graphic__prose')
 
-	var margin = 20
-	var size = window.innerWidth*0.5
-	var sizeheight=window.innerHeight
-	var chartSizeW = size - margin * 2
-	var chartSizeH = window.innerHeight
 	var steps = [
 		function step0() {
 			storyChart.toggleDisplay('all');

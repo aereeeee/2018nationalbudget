@@ -82,7 +82,6 @@ main {
 width: 100%;
 position: relative;
 }
-/* 텍스트파트 일단 50/50 패딩으로 마진처리 */
 .graphic__prose {
 width:40vw;
 padding-left:15vw;
@@ -117,15 +116,8 @@ top: auto;
 bottom: 0;
 }
 
-/* 차트svg를 버티컬 센터로 맞추면 처음 시작할때 텍스트와 같이 시작할수가 없.. */
 .graphic__vis svg {
-/* border: 1px dashed black; */
-/* top: 50%; */
 position: relative;
-/* -webkit-transform: translateY(-50%);
--moz-transform: translateY(-50%);
-transform: translateY(-50%); */
-
 }
 
 .graphic__vis.graph-scroll-fixed {
@@ -148,7 +140,6 @@ transition: all .5s;
 opacity: 1;
 }
 
-/* 트리거 안에 박스하나 더 만들어서 트리거는 svg랑 같이 높이 100, 박스를 중간배치 */
 .intrigger{
 position:absolute;
 top:50%;
@@ -161,7 +152,6 @@ transform:translateY(-50%);
 .percent{
   font-size:14px;
 }
-
 
 /* 고정형 인터랙브 */
   
@@ -320,7 +310,6 @@ transform:translateY(-50%);
       width: 100%;
       position: relative;
       }
-      /* 텍스트파트 일단 50/50 패딩으로 마진처리 */
       .graphic__prose {
       width:100vw;
       padding-left:20px;
@@ -336,8 +325,6 @@ transform:translateY(-50%);
       z-index:999;
       }
 
-      /* 그래프파트 (돔의 넓이 적용이 안됨 차트에..그래서 윈도우 넓이 적용해야만함.. 그래서 50/50)
-      높이 걍 100 */
       .graphic__vis {
       position: absolute;
       top: 0;
@@ -360,8 +347,6 @@ transform:translateY(-50%);
       .trigger.graph-scroll-active{
       opacity: 1;
       }
-
-      /* 트리거 안에 박스하나 더 만들어서 트리거는 svg랑 같이 높이 100, 박스를 중간배치 */
       .total{
         font-weight:600;
         font-size:14px;
@@ -374,6 +359,8 @@ transform:translateY(-50%);
       .percentline{
         display: none;
       }
+
+
       /* 고정형 인터랙브 */
         
         .container {
